@@ -21,7 +21,9 @@ void calc_albedo_waterfall_ps(
 	in float2 texcoord,
 	out float4 albedo,
 	in float3 normal,
-	in float4 misc)
+	in float4 misc,
+	in float3 view_dir,
+	in float2 vPos)
 {
 	float4 base_mask=		sample2D(waterfall_base_mask,	transform_texcoord(texcoord,	waterfall_base_mask_xform));
 	float4 layer0=			sample2D(waterfall_layer0,		transform_texcoord(texcoord,	waterfall_layer0_xform));
