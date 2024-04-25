@@ -219,12 +219,13 @@ albedo_pixel albedo_ps(
 #else
 	float4 misc = { 0.0f, 0.0f, 0.0f, 0.0f };
 #endif
-	float output_alpha;
-	// do alpha test
-	calc_alpha_test_ps(vsout.texcoord, output_alpha);
 		
 	float4 albedo;
     calc_albedo_ps(vsout.texcoord, albedo, vsout.normal.xyz, misc, float3(0, 0, 0), vsout.position.xy);
+	
+    float output_alpha;
+	// do alpha test
+    calc_alpha_test_ps(vsout.texcoord, output_alpha, albedo.a);
 	
 #ifndef NO_ALPHA_TO_COVERAGE
 	albedo.w= output_alpha;
@@ -299,10 +300,6 @@ accum_pixel static_common_ps(
 #else
 	float4 misc = { 0.0f, 0.0f, 0.0f, 0.0f };
 #endif
-	
-	float output_alpha;
-	// do alpha test
-	calc_alpha_test_ps(vsout.texcoord, output_alpha);
 
 	float4 out_color;
 	//float4 albedo = get_albedo(vsout.position);
@@ -310,6 +307,10 @@ accum_pixel static_common_ps(
 	
     float2 screen_texcoord = (vsout.position.xy + float2(0.5f, 0.5f)) / texture_size.xy;
     float4 albedo = tex2D(albedo_texture, screen_texcoord);
+	
+    float output_alpha;
+	// do alpha test
+    calc_alpha_test_ps(vsout.texcoord, output_alpha, albedo.a);
 	
 	out_color.xyz = (vsout.lighting * albedo.xyz * vsout.extinction + vsout.inscatter * BLEND_FOG_INSCATTER_SCALE) * g_exposure.rrr;
 	out_color.w= 0.0f;

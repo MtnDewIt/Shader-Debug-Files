@@ -10,10 +10,24 @@ Mon, Nov 11, 2005 2:01pm (haochen)
 // Two lobe phong material model parameters
 //****************************************************************************
 
+#ifdef APPLY_FIXES
+#ifdef ALBEDO_DEFINED
+#if ALBEDO_TYPE(calc_albedo_ps) == ALBEDO_TYPE_calc_albedo_four_change_color_applying_to_specular_ps
+	#define normal_specular_tint tertiary_change_color
+	#define glancing_specular_tint quaternary_change_color
+	#define TINTS_DEFINED 1
+#endif
+#endif
+#endif
+
 PARAM(float,	normal_specular_power);						// power of the specular lobe at normal incident angle
+#ifndef TINTS_DEFINED
 PARAM(float3,	normal_specular_tint);						// specular color of the normal specular lobe
+#endif
 PARAM(float,	glancing_specular_power);					// power of the specular lobe at glancing incident angle
+#ifndef TINTS_DEFINED
 PARAM(float3,	glancing_specular_tint);					// specular color of the glancing specular lobe
+#endif
 PARAM(float,	fresnel_curve_steepness);					// 
 PARAM(float,	albedo_specular_tint_blend);				// mix albedo color into specular reflectance
 
@@ -227,7 +241,11 @@ void calculate_area_specular_phong_order_3(
 	float3 x0, x1, x2, x3;
 	
 	//constant
-	x0= sh_lighting_coefficients[0].r * p_0;
+#ifdef APPLY_FIXES
+	x0= sh_lighting_coefficients[0].rgb * p_0;
+#else
+    x0 = sh_lighting_coefficients[0].r * p_0;
+#endif
 	
 	// linear
 	x1.r=  dot(reflection_dir, sh_lighting_coefficients[1].xyz);
@@ -268,7 +286,11 @@ void calculate_area_specular_phong_order_2(
 	float3 x0, x1, x2, x3;
 	
 	//constant
-	x0= sh_lighting_coefficients[0].r * p_0;
+#ifdef APPLY_FIXES
+	x0= sh_lighting_coefficients[0].rgb * p_0;
+#else
+    x0 = sh_lighting_coefficients[0].r * p_0;
+#endif
 	
 	// linear
 	x1.r=  dot(reflection_dir, sh_lighting_coefficients[1].xyz);

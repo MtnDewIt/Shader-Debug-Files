@@ -86,7 +86,12 @@ float4 thresh(float4 in_color)
 #if DX_VERSION == 11
 	one_minus_solarize = max(0.000001, one_minus_solarize);
 #endif	
+	
+#if APPLY_FIXES
 	float result= step(cortana_comp_solarize_result.x, t_in)*pow(abs((t_in - cortana_comp_solarize_result.x)/one_minus_solarize), cortana_comp_solarize_result.y);
+#else
+	float result= step(cortana_comp_solarize_result.x, t_in)*pow(((t_in - cortana_comp_solarize_result.x)/one_minus_solarize), cortana_comp_solarize_result.y);
+#endif
 	
 	return float4(result*cortana_comp_solarize_outmix);
 }
@@ -175,6 +180,8 @@ accum_pixel default_ps(chud_output_cortana IN) : SV_Target
 
 	accum_pixel result_pixel;
 	result_pixel.color= background_gravemind+foreground;
+
+	// there is a difference here but i dont think it matters
 
 #ifdef pc	
 	result_pixel.color.rgb = d3dSRGBInvGamma(result_pixel.color.rgb);

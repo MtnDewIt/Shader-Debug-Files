@@ -4,6 +4,33 @@
 #define DETAIL_MULTIPLIER 4.59479f
 // 4.59479f == 2 ^ 2.2  (sRGB gamma)
 
+#define ALBEDO_DEFINED 1
+#define ALBEDO_TYPE(albedo_option) ALBEDO_TYPE_##albedo_option
+
+#define ALBEDO_TYPE_calc_albedo_default_ps										101
+#define ALBEDO_TYPE_calc_albedo_detail_blend_ps									102
+#define ALBEDO_TYPE_calc_albedo_constant_color_ps								103
+#define ALBEDO_TYPE_calc_albedo_two_change_color_ps								104
+#define ALBEDO_TYPE_calc_albedo_four_change_color_ps							105
+#define ALBEDO_TYPE_calc_albedo_three_detail_blend_ps							106
+#define ALBEDO_TYPE_calc_albedo_two_detail_overlay_ps							107
+#define ALBEDO_TYPE_calc_albedo_two_detail_ps									108
+#define ALBEDO_TYPE_calc_albedo_color_mask_ps									109
+#define ALBEDO_TYPE_calc_albedo_two_detail_black_point_ps						110
+#define ALBEDO_TYPE_calc_albedo_two_change_color_anim_ps						111
+#define ALBEDO_TYPE_calc_albedo_chameleon_ps									112
+#define ALBEDO_TYPE_calc_albedo_two_change_color_chameleon_ps					113
+#define ALBEDO_TYPE_calc_albedo_chameleon_masked_ps								114
+#define ALBEDO_TYPE_calc_albedo_color_mask_hard_light_ps						115
+#define ALBEDO_TYPE_calc_albedo_four_change_color_applying_to_specular_ps		116
+#define ALBEDO_TYPE_calc_albedo_simple_ps										117
+#define ALBEDO_TYPE_calc_albedo_two_change_color_tex_overlay_ps					118
+#define ALBEDO_TYPE_calc_albedo_chameleon_albedo_masked_ps						119
+#define ALBEDO_TYPE_calc_albedo_custom_cube_ps									120
+#define ALBEDO_TYPE_calc_albedo_two_color_ps									121
+#define ALBEDO_TYPE_calc_albedo_emblem_ps										122
+
+PARAM(float, blend_alpha);
 PARAM(float4, albedo_color);
 PARAM(float4, albedo_color2);		// used for color-mask
 PARAM(float4, albedo_color3);
@@ -121,6 +148,10 @@ void calc_albedo_detail_blend_ps(
 	in float2 vPos)
 {
 	float4	base=	sample2D(base_map,		transform_texcoord(texcoord, base_map_xform));
+	#ifdef APPLY_FIXES
+	base.w= saturate(base.w*blend_alpha);
+	#endif
+	
 	float4	detail=	sample2D(detail_map,	transform_texcoord(texcoord, detail_map_xform));	
 	float4	detail2= sample2D(detail_map2,	transform_texcoord(texcoord, detail_map2_xform));
 
@@ -143,6 +174,10 @@ void calc_albedo_three_detail_blend_ps(
 	in float2 vPos)
 {
 	float4 base=	sample2D(base_map,		transform_texcoord(texcoord, base_map_xform));
+	#ifdef APPLY_FIXES
+	base.w= saturate(base.w*blend_alpha);
+	#endif
+	
 	float4 detail1= sample2D(detail_map,	transform_texcoord(texcoord, detail_map_xform));
 	float4 detail2= sample2D(detail_map2,	transform_texcoord(texcoord, detail_map2_xform));
 	float4 detail3= sample2D(detail_map3,	transform_texcoord(texcoord, detail_map3_xform));
@@ -639,5 +674,22 @@ void calc_albedo_emblem_ps(
 
     apply_pc_albedo_modifier(albedo, normal);
 }
+
+void calc_albedo_four_change_color_applying_to_specular_ps(
+	in float2 texcoord,
+	out float4 albedo,
+	in float3 normal,
+	in float4 misc,
+	in float3 view_dir,
+	in float2 vPos)
+{
+    calc_albedo_four_change_color_ps(texcoord,
+		albedo,
+		normal,
+		misc,
+		view_dir,
+		vPos);
+}
+
 
 

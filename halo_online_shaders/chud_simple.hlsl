@@ -138,7 +138,23 @@ accum_pixel default_ps(chud_output IN) : SV_Target
 
 
 #else // pc
+	#ifdef APPLY_FIXES
+
+	float2 texcoord= IN.Texcoord;
+	float4 gradients = GetGradients(texcoord);
+				
+	float4 result= 0.0;
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients, -2.0/9.0,  2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients, -2.0/9.0, -2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients,  2.0/9.0, -2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients,  2.0/9.0,  2.0/9.0));
+	result /= 4.0;
+	result= build_subpixel_result_shared(result);	
+				
+	#else
 	float4 result= build_subpixel_result(IN.Texcoord);
+	#endif
+				
 #endif // pc
 
 	return chud_compute_result_pixel(result);

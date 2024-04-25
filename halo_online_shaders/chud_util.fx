@@ -221,3 +221,10 @@ float2 get_noise_basis_cortana(float2 input, float4 basis, float scale_x, float 
 	
 	return sample;
 }
+
+float4 GetGradients(in float2 value)
+{
+    float2 x_gradient = ddx(value);
+    float2 y_gradient = ddy(value);
+    return float4(x_gradient.x, y_gradient.x, x_gradient.y, y_gradient.y);
+}

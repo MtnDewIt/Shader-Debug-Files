@@ -77,6 +77,7 @@ void calc_alpha_test_on_ps(
 	inout float output_alpha,
     in float albedo_alpha)
 {
+    calc_alpha_test_on_ps(texcoord, output_alpha);
 }
 
 void calc_alpha_test_from_albedo_ps(

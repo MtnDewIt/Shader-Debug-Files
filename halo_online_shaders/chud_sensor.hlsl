@@ -42,12 +42,13 @@
 
 struct chud_output_sensor
 {
-	float4 HPosition	:SV_Position;
-	float4 Color		:COLOR0;
-	float2 Texcoord		:TEXCOORD0;
-	float2 MicroTexcoord:TEXCOORD1;
+    float4 HPosition		: VS_POS_OUTPUT;
+	float4 Color			: COLOR0;
+	float2 Texcoord			: TEXCOORD0;
+	float2 MicroTexcoord	: TEXCOORD1;
 };
 
+#ifdef VERTEX_SHADER
 chud_output_sensor default_vs(vertex_type IN)
 {
     chud_output_sensor OUT;
@@ -61,6 +62,7 @@ chud_output_sensor default_vs(vertex_type IN)
 	
     return OUT;
 }
+#endif
 
 // pixel fragment entry points
 accum_pixel default_ps(chud_output_sensor IN) : SV_Target

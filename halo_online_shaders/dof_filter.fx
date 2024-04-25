@@ -16,14 +16,16 @@ float4 simple_DOF_filter(float2 vTexCoord, texture_sampler_2d original_sampler, 
 	// get pixel depth, and calculate blur amount
 	float fCenterDepth = sample2D( zbuffer_sampler, vTexCoord ).r;
 	//fCenterDepth= 1.0f / (DEPTH_BIAS + fCenterDepth * DEPTH_SCALE);					// convert to real depth
-	float fTapBlur = min(max(abs(fCenterDepth-FOCUS_DISTANCE)-FOCUS_HALF_WIDTH, 0.0f)*APERTURE, MAX_BLUR_BLEND);
+	float fTapBlur = min(max(abs(-FOCUS_DISTANCE + -fCenterDepth)-FOCUS_HALF_WIDTH, 0.0f)*APERTURE, MAX_BLUR_BLEND);
 
 	// blend high and low res based on blur amount
 	float4 vOutColor= lerp(vTapHigh, vTapLow, fTapBlur * fTapBlur);							// blurry samples use blurry buffer,  sharp samples use sharp buffer
-
+        
     if (original_gamma2)
     {
+#ifdef APPLY_FIXES
         vOutColor.rgb = pow(sqrt(vOutColor.rgb), gamma_power);
+#endif
     }
     
     return vOutColor; 

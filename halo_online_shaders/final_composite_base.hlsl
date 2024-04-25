@@ -42,10 +42,16 @@ float4 default_combine_hdr_ldr(in float2 texcoord)							// supports multiple so
 {
 #ifdef pc
 	float4 accum=		sample2D(surface_sampler, texcoord);
+	#ifdef APPLY_FIXES
 		accum.rgb = pow(sqrt(accum.rgb), gamma_power);
+	#endif
+	float4 combined= accum;
+	// HO cut this out, but hdr is still rendered.
+#ifdef APPLY_FIXES
 	float4 accum_dark=	sample2D(dark_surface_sampler, texcoord);
 		accum_dark.rgb = pow(sqrt(accum_dark.rgb), gamma_power);
-	float4 combined= max(accum, accum_dark * DARK_COLOR_MULTIPLIER);		// convert_from_render_targets <-- for some reason this isn't optimized very well
+	combined= max(accum, accum_dark * DARK_COLOR_MULTIPLIER);		// convert_from_render_targets <-- for some reason this isn't optimized very well
+#endif
 #else // XENON
 	
 	float4 accum=		sample2D(surface_sampler, texcoord);
@@ -92,11 +98,11 @@ float4 default_calc_bloom(in float2 texcoord)
 
 float3 default_calc_blend(in float2 texcoord, in float4 combined, in float4 bloom)
 {
-#ifdef pc
-	return combined + bloom;
-#else // XENON
-	return combined * bloom.a + bloom.rgb;
-#endif // XENON
+//#ifdef pc
+//	return combined + bloom;
+//#else // XENON
+    return combined.rgb * (texcoord.x > 0.5f ? 1.0f : bloom.a) + bloom.rgb;
+//#endif // XENON
 }
 
 float4 apply_noise( in float2 noise_space_texcoord, in float4 input_color )
@@ -173,7 +179,9 @@ float4 default_ps(in s_final_composite_output input) : SV_Target
 
 	result.a= sqrt( dot(result.rgb, float3(0.299, 0.587, 0.114)) );
 	
+#ifdef APPLY_FIXES
 	result= apply_noise(input.xformed_texcoord.zw, result);
+#endif
 	
 	return result;
 }

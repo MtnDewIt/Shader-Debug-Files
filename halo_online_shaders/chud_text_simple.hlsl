@@ -56,7 +56,13 @@ float4 build_subpixel_result_shared(float4 bitmap_result)
 {
 	float max_color= max(bitmap_result.r, max(bitmap_result.g, bitmap_result.b));
 	float min_color= min(bitmap_result.r, min(bitmap_result.g, bitmap_result.b));
+	
+#ifdef APPLY_FIXES
 	float flash_color_blend = saturate(chud_scalar_output_ABCD.y);
+#else
+    float flash_color_blend = chud_scalar_output_ABCD.y;
+#endif
+		
 	float4 result= chud_color_output_A*(1.0 - flash_color_blend) + chud_color_output_B*flash_color_blend;
 	
 //	if (min_color!=max_color)								// can't do absolute math on floating point data
@@ -146,7 +152,23 @@ accum_pixel default_ps(chud_output IN) : SV_Target
 	result= build_subpixel_result_shared(result);	
 	
 #else // pc
+				
+	#ifdef APPLY_FIXES
+
+	float2 texcoord= IN.Texcoord;
+	float4 gradients = GetGradients(texcoord);
+				
+	float4 result= 0.0;
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients, -2.0/9.0,  2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients, -2.0/9.0, -2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients,  2.0/9.0, -2.0/9.0));
+	result+= texture_lookup(build_subsample_texcoord(texcoord, gradients,  2.0/9.0,  2.0/9.0));
+	result /= 4.0;
+	result= build_subpixel_result_shared(result);	
+				
+	#else
 	float4 result= build_subpixel_result(IN.Texcoord);
+	#endif
 #endif // pc
 
 	return chud_compute_result_pixel(result);

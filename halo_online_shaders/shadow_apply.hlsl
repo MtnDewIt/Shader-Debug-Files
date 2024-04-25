@@ -211,7 +211,7 @@ accum_pixel default_ps(
 		//							the depth map stores the Z value of the center of the pixel, we want to determine what the Z value is at our projection
 		//							our simple approximation is to assume it is at the farthest point in the pixel, and do the compare at that point
 
-#if (defined(pc) && (DX_VERSION == 9)) || (! defined(FASTER_SHADOWS))
+#if /*(defined(pc) && (DX_VERSION == 9)) || */(! defined(FASTER_SHADOWS))
 		cosine= max(cosine, 0.24253562503633297351890646211612);									// limits max slope to 4.0, and prevents divide by zero  ###ctchou $REVIEW could make this (4.0) a shader parameter if you have trouble with the masterchief's helmet not shadowing properly
 		float slope= sqrt(1-cosine*cosine) / cosine;												// slope == tan(theta) == sin(theta)/cos(theta) == sqrt(1-cos^2(theta))/cos(theta)
 		slope= slope + 0.2f;

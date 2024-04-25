@@ -820,7 +820,7 @@ PARAM(float, alpha_modulation_factor);
 
 PARAM(float, palette_shift_amount);
 
-float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float palette_v, float external_alpha)
+float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float palette_v, float particle_alpha, float depth_alpha)
 {
 // hack for now
 	float2 texcoord_other_sprite = texcoord_sprite;
@@ -861,6 +861,12 @@ float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float p
 	IF_CATEGORY_OPTION(albedo, palettized)
 	{
 		float index= sample2D(base_map, transform_texcoord(texcoord_sprite, base_map_xform)).x;
+
+		//IF_CATEGORY_OPTION(depth_fade, palette_shift)
+		//{
+		//	index=	saturate(index + (1-depth_alpha*particle_alpha) * palette_shift_amount);
+		//}
+
 		return sample2D(palette, float2(index, palette_v));
 	}
 	
@@ -869,6 +875,12 @@ float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float p
 	{
 		float index= sample2D(base_map, transform_texcoord(texcoord_sprite, base_map_xform)).x;
 		float alpha= sample2D(alpha_map, transform_texcoord(texcoord_billboard, alpha_map_xform)).w;
+
+		//IF_CATEGORY_OPTION(depth_fade, palette_shift)
+		//{
+		//	index=	saturate(index + (1-depth_alpha*particle_alpha) * palette_shift_amount);
+		//}
+
 		return float4(sample2D(palette, float2(index, palette_v)).xyz, alpha);
 	}
 	
@@ -876,6 +888,12 @@ float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float p
 	{
 		float index= sample2D(base_map, transform_texcoord(texcoord_sprite, base_map_xform)).x;
 		float alpha= sample2D(alpha_map, transform_texcoord(texcoord_sprite, alpha_map_xform)).w;
+
+		//IF_CATEGORY_OPTION(depth_fade, palette_shift)
+		//{
+		//	index=	saturate(index + (1-depth_alpha*particle_alpha) * palette_shift_amount);
+		//}
+
 		return float4(sample2D(palette, float2(index, palette_v)).xyz, alpha);
 	}
 	
@@ -887,7 +905,7 @@ float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float p
 
 		float alpha=	tex2D(alpha_map, texcoord_billboard).a;
 
-		index=	saturate(index + (1-alpha*external_alpha) * alpha_modulation_factor);
+		index=	saturate(index + (1-alpha*particle_alpha*depth_alpha) * alpha_modulation_factor);
 
 		float4 palette_value=	tex2D(palette, float2(index, palette_v));
 
@@ -907,8 +925,8 @@ float4 sample_diffuse(float2 texcoord_sprite, float2 texcoord_billboard, float p
 		//	index=	saturate(index + (1-alpha*particle_alpha) * palette_shift_amount);
 		//}
 
-		float4 palette_value=	sample2D(palette, float2(index, external_alpha));
-//		float4 palette_value=	pow(1-abs(index - (1-external_alpha)), 20);
+		float4 palette_value=	sample2D(palette, float2(index, depth_alpha));
+//		float4 palette_value=	pow(1-abs(index - (1-depth_alpha)), 20);
 
 		return float4(palette_value.rgb, alpha);
 	}
@@ -946,7 +964,7 @@ float compute_depth_fade(float2 screen_coords, float depth, float range)
 	return saturate(delta_depth / range);
 }
 
-float2 compute_normalized_distortion(s_particle_render_vertex IN, float2 screen_coords, float2 blended, float depth_fade)
+float3 compute_normalized_distortion(s_particle_render_vertex IN, float2 screen_coords, float2 blended, float depth_fade)
 {
 	// Fake a spherical distortion map
 	//blended.xy= IN.m_texcoord_sprite0;
@@ -970,18 +988,19 @@ float2 compute_normalized_distortion(s_particle_render_vertex IN, float2 screen_
 
 	// Now use full positive range of render target [0.0,32.0)
 	float2 distortion= distortion_scale * frame_displacement;
+	float2 saved_distortion = distortion;
 #ifdef pc
-	distortion = distortion * 1024.0f / 32767.0f; // on PC use [0, 1] range instead [6/12/2012 paul.smirnov]
+	distortion /= 32.0f; // on PC use [0, 1] range instead [6/12/2012 paul.smirnov]
 #endif // pc
 	
 	if (TEST_CATEGORY_OPTION(specialized_rendering, distortion_expensive) || TEST_CATEGORY_OPTION(specialized_rendering, distortion_expensive_diffuse))
 	{
 		static float fudge_scale= 1.0f;
-		clip(compute_depth_fade(screen_coords + distortion * fudge_scale / 64.0f, IN.m_depth, 1.0f)== 0 ? -1 : 1);
+		clip(compute_depth_fade(screen_coords + distortion * fudge_scale / 64.0f, IN.m_depth, 1.0f) == 0 ? -1 : 1);
 	}
 	
 	static float max_displacement= 1.0f;	// if used, keep in sync with displacement.hlsl
-	return distortion * screen_constants / max_displacement;
+	return float3(distortion, saved_distortion.g) * screen_constants.xyy / max_displacement;
 }
 //#endif	//#ifndef pc
 
@@ -995,15 +1014,15 @@ s_particle_render_pixel_out default_ps(
 	s_particle_render_vertex IN= read_particle_interpolators(INTERPOLATORS);
 
 // this will change compile order, should be after pixel kill
- 	float depth_fade= (TEST_CATEGORY_OPTION(depth_fade, on) && !TEST_CATEGORY_OPTION(blend_mode, opaque))
+ 	float depth_fade= ((TEST_CATEGORY_OPTION(depth_fade, on)/* || TEST_CATEGORY_OPTION(depth_fade, palette_shift)*/) && !TEST_CATEGORY_OPTION(blend_mode, opaque))
  		? compute_depth_fade(screen_coords, IN.m_depth, depth_fade_range)
  		: 1.0f;
 //	float depth_fade= compute_depth_fade(screen_coords, IN.m_depth, depth_fade_range);
 
 	float4 blended= TEST_CATEGORY_OPTION(frame_blend, on)
-		? lerp(sample_diffuse(IN.m_texcoord_sprite0, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a * depth_fade), 
-				sample_diffuse(IN.m_texcoord_sprite1, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a * depth_fade), IN.m_frame_blend)
-		: sample_diffuse(IN.m_texcoord_sprite0, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a * depth_fade);	
+		? lerp(sample_diffuse(IN.m_texcoord_sprite0, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a, depth_fade), 
+				sample_diffuse(IN.m_texcoord_sprite1, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a, depth_fade), IN.m_frame_blend)
+		: sample_diffuse(IN.m_texcoord_sprite0, IN.m_texcoord_billboard, IN.m_palette, IN.m_color.a, depth_fade);	
 	
 #ifdef PARTICLE_PIXEL_KILL	// probably not worth it, since you would need all pixels in a vector to die	
 	static float alpha_cutoff= 0.5f/255.0f;
@@ -1028,9 +1047,13 @@ s_particle_render_pixel_out default_ps(
 		}
 	#endif
 
-		float2 normalized_displacement= compute_normalized_distortion(IN, screen_coords, blended, depth_fade);
+		float3 normalized_displacement= compute_normalized_distortion(IN, screen_coords, blended, depth_fade);
 		accum_pixel distorted_pixel;
-		distorted_pixel.color= float4(normalized_displacement, 0.0f, 1.0f);
+		distorted_pixel.color= float4(normalized_displacement.rg, 0.0f, 1.0f);
+#ifdef APPLY_FIXES
+		distorted_pixel.color.a= normalized_displacement.b;
+#endif
+
 #ifndef LDR_ONLY
 		distorted_pixel.dark_color= float4(0.0f, 0.0f, 0.0f, 0.0f);
 		distorted_pixel.ssr_color= float4(0.0f, 0.0f, 0.0f, 0.0f);

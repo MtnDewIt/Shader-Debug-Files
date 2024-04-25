@@ -195,6 +195,10 @@ s_light_volume_interpolators default_vs(
 #include "render_target.fx"
 
 PARAM_SAMPLER_2D(base_map);
+//PARAM(float, depth_fade_range);
+
+PARAM(float, center_offset);
+PARAM(float, falloff);
 
 float4 sample_diffuse(float2 texcoord)
 {
@@ -202,7 +206,33 @@ float4 sample_diffuse(float2 texcoord)
 	{
 		return sample2D(base_map, texcoord);
 	}
+	IF_CATEGORY_OPTION(albedo, circular)
+	{
+		float2	delta=		2 * texcoord - 1;
+		float	radius=		saturate(center_offset - center_offset * dot(delta.xy, delta.xy));
+//		float	alpha=		radius * radius * sqrt(radius);
+		float	alpha=		pow(radius, falloff);
+		return	float4(alpha, alpha, alpha, 1.0f);
+	}
 }
+
+//float compute_depth_fade(float2 screen_coords, float depth, float range)
+//{
+//#if (DX_VERSION == 9)
+//	if (!TEST_CATEGORY_OPTION(depth_fade, off) && !TEST_CATEGORY_OPTION(blend_mode, opaque))
+//	{
+//		float2 screen_texcoord= (screen_coords.xy + float2(0.5f, 0.5f)) / texture_size.xy;
+//		float4 depth_value= sample2D(depth_buffer, screen_texcoord);
+//		float particle_depth= depth;
+//		float delta_depth= scene_depth - particle_depth;
+//		return saturate(delta_depth / range);
+//	}
+//	else
+//#endif // !pc
+//	{
+//		return 1.0f;
+//	}
+//}
 
 typedef accum_pixel s_light_volume_render_pixel_out;
 s_light_volume_render_pixel_out default_ps(s_light_volume_interpolators INTERPOLATORS)
@@ -210,7 +240,12 @@ s_light_volume_render_pixel_out default_ps(s_light_volume_interpolators INTERPOL
 // #ifndef pc
 	s_light_volume_render_vertex IN= read_light_volume_interpolators(INTERPOLATORS);
 
+	// need glvs compile for this :/
+	//float depth_fade=	compute_depth_fade(IN.m_screencoord, IN.m_depth, depth_fade_range);
+
 	float4 blended= sample_diffuse(IN.m_texcoord);
+
+	//blended.w *=		depth_fade;
 	
 	blended*= IN.m_color;
 	

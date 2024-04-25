@@ -11,7 +11,26 @@ PARAM(float4, bump_detail_masked_map_xform);
 PARAM(float, bump_detail_coefficient);
 PARAM(float, bump_detail_masked_coefficient);
 
+PARAM_SAMPLER_2D(bump_detail_map2);
+PARAM(float4, bump_detail_map2_xform);
+PARAM_SAMPLER_2D(bump_detail_map3);
+PARAM(float4, bump_detail_map3_xform);
+
+// wrinkle maps
+PARAM_SAMPLER_2D(wrinkle_normal);
+PARAM(float4, wrinkle_normal_xform);
+PARAM_SAMPLER_2D(wrinkle_mask_a);
+PARAM(float4, wrinkle_mask_a_xform);
+PARAM_SAMPLER_2D(wrinkle_mask_b);
+PARAM(float4, wrinkle_mask_b_xform);
+PARAM(float4, wrinkle_weights_a);
+PARAM(float4, wrinkle_weights_b);
+
 #include "bump_mapping_util.fx"
+
+#ifndef SAMPLE_BUMP_TEXTURE
+#define SAMPLE_BUMP_TEXTURE sample_bumpmap
+#endif
 
 //#if defined(pc) && (DX_VERSION == 9)
 //#define BUMP_CONVERT(x)  ((x) * (255.0f / 127.f) - (128.0f / 127.f))
@@ -147,6 +166,57 @@ void calc_bumpmap_detail_plus_detail_masked_ps(
 	bump_normal = normalize(mul(bump, tangent_frame));		// V*M = M'*V = inverse(M)*V    if M is orthogonal (tangent_frame should be orthogonal)	
 }
 
+
+void add_wrinkle_onto_bump_unnormalized(
+	in float2 texcoord,
+	inout float3 bump_normal)
+{
+	float3 wrinkle_bump= SAMPLE_BUMP_TEXTURE(wrinkle_normal, transform_texcoord(texcoord, wrinkle_normal_xform));
+
+	float4 mask_a= tex2D(wrinkle_mask_a, transform_texcoord(texcoord, wrinkle_mask_a_xform));
+	float4 mask_b= tex2D(wrinkle_mask_b, transform_texcoord(texcoord, wrinkle_mask_b_xform));
+
+	float wrinkle_weight= dot(mask_a, wrinkle_weights_a) + dot(mask_b, wrinkle_weights_b);
+	wrinkle_weight= saturate(wrinkle_weight);
+
+	wrinkle_bump= lerp(float3(0, 0, 1), wrinkle_bump, wrinkle_weight);
+
+	bump_normal= float3(bump_normal.xy+wrinkle_bump.xy, bump_normal.z*wrinkle_bump.z);
+	bump_normal= normalize(bump_normal);
+}
+
+void calc_bumpmap_default_wrinkle_ps(
+	in float2 texcoord,
+	in float3 fragment_to_camera_world,	
+	in float3x3 tangent_frame,
+	out float3 bump_normal)
+{
+	float3 bump= SAMPLE_BUMP_TEXTURE(bump_map, transform_texcoord(texcoord, bump_map_xform));		// in tangent space
+
+	add_wrinkle_onto_bump_unnormalized(texcoord, bump);
+
+	// rotate bump to world space (same space as lightprobe) and normalize
+	bump_normal= normalize( mul(bump, tangent_frame) );		// V*M = M'*V = inverse(M)*V    if M is orthogonal (tangent_frame should be orthogonal)
+}
+
+
+void calc_bumpmap_detail_wrinkle_ps(
+	in float2 texcoord,
+	in float3 fragment_to_camera_world,
+	in float3x3 tangent_frame,
+	out float3 bump_normal)
+{
+	float3 bump= SAMPLE_BUMP_TEXTURE(bump_map, transform_texcoord(texcoord, bump_map_xform));					// in tangent space
+	float3 detail= SAMPLE_BUMP_TEXTURE(bump_detail_map, transform_texcoord(texcoord, bump_detail_map_xform));	// in tangent space
+	
+	bump.xy+= detail.xy;
+	bump= normalize(bump);
+
+	add_wrinkle_onto_bump_unnormalized(texcoord, bump);
+	
+	// rotate bump to world space (same space as lightprobe) and normalize
+	bump_normal= normalize( mul(bump, tangent_frame) );		// V*M = M'*V = inverse(M)*V    if M is orthogonal (tangent_frame should be orthogonal)	
+}
 
 
 /*

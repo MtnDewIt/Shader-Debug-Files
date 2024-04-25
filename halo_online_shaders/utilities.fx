@@ -31,6 +31,9 @@
 	#define TFETCH_3D(OUT, TEX_COORD, SAMPLER, OFFSET, SCALE) OUT = sample3D(SAMPLER, float3(TEX_COORD.x, TEX_COORD.y, TEX_COORD.z + (OFFSET - 0.)/SCALE));
 #endif //pc
 
+// reach
+#define raised_analytical_light_maximum 1.0f
+#define raised_analytical_light_minimum 0.1f
 
 // RGBE functions
 /*

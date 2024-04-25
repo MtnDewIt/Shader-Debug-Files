@@ -60,8 +60,8 @@ void get_albedo_and_normal(out float3 bump_normal, out float4 albedo, in float3 
 			bump_normal= tex2D(normal_texture, screen_texcoord).xyz * 2.0f - 1.0f;
 			albedo= tex2D(albedo_texture, screen_texcoord);
 	#endif // DX_VERSION
+		}
 #endif // always_calc_albedo
-    }
 }
 	
 struct albedo_vsout
@@ -283,6 +283,16 @@ float4 calc_output_color_with_explicit_light_quadratic(
 	//compute self illumination	
 	float3 self_illum_radiance= calc_self_illumination_ps(texcoord, albedo.xyz, view_dir_in_tangent_space, fragment_position, fragment_to_camera_world, view_dot_normal) * ILLUM_SCALE;
 	
+	// apply opacity fresnel effect	
+	{
+		float final_opacity, specular_scalar;
+		calc_alpha_blend_opacity(albedo.w, tangent_frame[2], view_dir, texcoord, final_opacity, specular_scalar);
+
+		envmap_radiance*= specular_scalar;
+		specular_radiance*= specular_scalar;
+		albedo.w= final_opacity;
+	}
+	
 	float4 out_color;
 	
 	// set color channels
@@ -433,6 +443,16 @@ float4 calc_output_color_with_explicit_light_linear_with_dominant_light(
 
 	//compute self illumination	
 	float3 self_illum_radiance= calc_self_illumination_ps(texcoord, albedo.xyz, view_dir_in_tangent_space, fragment_position, fragment_to_camera_world, view_dot_normal) * ILLUM_SCALE;
+	
+	// apply opacity fresnel effect	
+	{
+		float final_opacity, specular_scalar;
+		calc_alpha_blend_opacity(albedo.w, tangent_frame[2], view_dir, texcoord, final_opacity, specular_scalar);
+
+		envmap_radiance*= specular_scalar;
+		specular_radiance*= specular_scalar;
+		albedo.w= final_opacity;
+	}
 	
 	float4 out_color;
 	

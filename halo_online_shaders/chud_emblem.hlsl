@@ -97,7 +97,9 @@ float4 texture_lookup(float2 texcoord)
 // pixel fragment entry points
 accum_pixel default_ps(chud_output IN) : SV_Target
 {
-	float4 emblem_pixel= generate_emblem_pixel(IN.Texcoord);
+	//float4 emblem_pixel= generate_emblem_pixel(IN.Texcoord);
+			
+	float4 emblem_pixel= tex2D(tex0_sampler, IN.Texcoord.xy);
 	
 	return chud_compute_result_pixel(emblem_pixel);
 }

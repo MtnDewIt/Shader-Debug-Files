@@ -79,16 +79,16 @@ s_beam_interpolators write_beam_interpolators(s_beam_render_vertex VERTEX)
 
 s_beam_render_vertex read_beam_interpolators(s_beam_interpolators INTERPOLATORS)
 {
-	s_beam_render_vertex VERTEX;
+    s_beam_render_vertex VERTEX;
 
-	VERTEX.m_position= INTERPOLATORS.m_position0;
-	VERTEX.m_color= INTERPOLATORS.m_color0;
-	VERTEX.m_color_add= INTERPOLATORS.m_color1;
-	VERTEX.m_black_point= INTERPOLATORS.m_color1.w;
-	VERTEX.m_texcoord= INTERPOLATORS.m_texcoord0.xy;
-	VERTEX.m_palette= INTERPOLATORS.m_texcoord0.z;
+    VERTEX.m_position = INTERPOLATORS.m_position0;
+    VERTEX.m_color = INTERPOLATORS.m_color0;
+    VERTEX.m_color_add = INTERPOLATORS.m_color1;
+    VERTEX.m_black_point = INTERPOLATORS.m_color1.w;
+    VERTEX.m_texcoord = INTERPOLATORS.m_texcoord0.xy;
+    VERTEX.m_palette = INTERPOLATORS.m_texcoord0.z;
 
-	return VERTEX;
+    return VERTEX;
 }
 
 #ifdef VERTEX_SHADER
@@ -317,13 +317,26 @@ float remap_alpha(float black_point, float alpha)
 
 #include "utilities.fx"
 #include "render_target.fx"
+#include "texture_xform.fx"
 
 PARAM_SAMPLER_2D(base_map);
+PARAM(float4, base_map_xform);
+
+PARAM_SAMPLER_2D(base_map2);
+PARAM(float4, base_map2_xform);
+
 PARAM_SAMPLER_2D(palette);
 PARAM_SAMPLER_2D(alpha_map);
 
-float4 sample_diffuse(float2 texcoord, float palette_v)
+PARAM(float, modulation_factor);
+PARAM(float, alpha_modulation_factor);
+PARAM(float, palette_shift_amount);
+PARAM(float, depth_fade_range);
+
+float4 sample_diffuse(float2 texcoord, float palette_v, float depth_alpha)
 {
+	float particle_alpha= 1.0f;
+
 	IF_CATEGORY_OPTION(albedo, diffuse_only)
 	{
 		return sample2D(base_map, texcoord);
@@ -344,15 +357,72 @@ float4 sample_diffuse(float2 texcoord, float palette_v)
 		float alpha= sample2D(alpha_map, texcoord).w;
 		return float4(sample2D(palette, float2(index, palette_v)).xyz, alpha);
 	}
+
+	IF_CATEGORY_OPTION(albedo, palettized_plasma)
+	{
+		float noise_a=	sample2D(base_map,	transform_texcoord(texcoord, base_map_xform)).r;
+		float noise_b=	sample2D(base_map2,	transform_texcoord(texcoord, base_map2_xform)).r;
+		float index=	abs(noise_a - noise_b);
+
+		float alpha=	sample2D(alpha_map, texcoord).a;
+
+		index=	saturate(index + (1-alpha*particle_alpha*depth_alpha) * alpha_modulation_factor);
+
+		float4 palette_value=	sample2D(palette, float2(index, palette_v));
+
+		return float4(palette_value.rgb, alpha);
+	}
+
+	IF_CATEGORY_OPTION(albedo, palettized_2d_plasma)
+	{
+		float noise_a=	sample2D(base_map,	transform_texcoord(texcoord, base_map_xform)).r;
+		float noise_b=	sample2D(base_map2,	transform_texcoord(texcoord, base_map2_xform)).r;
+		float index=	abs(noise_a - noise_b);
+
+		float alpha=	sample2D(alpha_map, texcoord).a;
+
+//		IF_CATEGORY_OPTION(depth_fade, palette_shift)
+//		{
+//			index=	saturate(index + (1-alpha*particle_alpha) * palette_shift_amount);
+//		}
+
+		float4 palette_value=	sample2D(palette, float2(index, depth_alpha));
+//		float4 palette_value=	pow(1-abs(index - (1-depth_alpha)), 20);
+
+		return float4(palette_value.rgb, alpha);
+	}
 }
+
+//float compute_depth_fade(float2 screen_coords, float depth, float range)
+//{
+//#if (DX_VERSION == 9)
+//	if ((TEST_CATEGORY_OPTION(depth_fade, on) || TEST_CATEGORY_OPTION(depth_fade, palette_shift)) && !TEST_CATEGORY_OPTION(blend_mode, opaque))
+//	{
+//		float2 screen_texcoord= (screen_coords.xy + float2(0.5f, 0.5f)) / texture_size.xy;
+//		float scene_depth= sample2D(depth_buffer, screen_texcoord).x;
+//		float particle_depth= depth;
+//		float delta_depth= scene_depth - particle_depth;
+//		return saturate(delta_depth / range);
+//	}
+//	else
+//#endif // !pc
+//	{
+//		return 1.0f;
+//	}
+//}
 
 typedef accum_pixel s_beam_render_pixel_out;
 s_beam_render_pixel_out default_ps(s_beam_interpolators INTERPOLATORS)
 {
 	s_beam_render_vertex IN= read_beam_interpolators(INTERPOLATORS);
 
-	float4 blended= sample_diffuse(IN.m_texcoord, IN.m_palette);
+	//float depth_fade=	compute_depth_fade(screen_coords, IN.m_depth, depth_fade_range);
+	float depth_fade = 1.0f;
+
+	float4 blended= sample_diffuse(IN.m_texcoord, IN.m_palette, depth_fade);
 	
+	//blended.w *= depth_fade;
+
 	IF_CATEGORY_OPTION(black_point, on)
 	{
 		blended.w= remap_alpha(IN.m_black_point, blended.w);
