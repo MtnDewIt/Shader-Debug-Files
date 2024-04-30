@@ -85,6 +85,7 @@ albedo_pixel albedo_ps(in float4 inscatter : COLOR1)
 	return convert_to_albedo_target(
 		float4(color, 0), 
 		float3(0, 0, 0),
-		inscatter.w);
+		inscatter.w, 
+		float3(0, 0, 0));
 }
 

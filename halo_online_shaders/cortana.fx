@@ -692,5 +692,5 @@ albedo_pixel albedo_ps(
 	calc_alpha_test_ps(vsout.texcoord, output_alpha);
 
 	float4 base = sample2D(base_map, transform_texcoord(vsout.texcoord, base_map_xform)) * albedo_color;
-	return convert_to_albedo_target(base, vsout.normal.xyz, vsout.normal.w);
+	return convert_to_albedo_target(base, vsout.normal.xyz, vsout.normal.w, vsout.normal.xyz);
 }

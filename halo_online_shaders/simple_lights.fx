@@ -22,7 +22,7 @@ void calculate_simple_light(
 #ifdef dynamic_lights_use_array_notation
 #define		LIGHT_DATA(offset, registers)	(SIMPLE_LIGHT_DATA[light_index][(offset)].registers)
 #elif DX_VERSION == 9
-#define		LIGHT_DATA(offset, registers)	(SIMPLE_LIGHT_DATA[light_index + (offset)].registers)
+#define		LIGHT_DATA(offset, registers)	(SIMPLE_LIGHT_DATA[(light_index * 5) + (offset)].registers)
 #elif DX_VERSION == 11
 #define		LIGHT_DATA(offset, registers)	(SIMPLE_LIGHT_DATA[(light_index * 5) + (offset)].registers)
 #endif

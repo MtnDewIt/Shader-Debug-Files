@@ -7,6 +7,9 @@ struct albedo_pixel
 	float4 normal : SV_Target1;					// normal (XYZ)
 #if defined(pc) && (DX_VERSION == 9)
 	float4 pos_w : SV_Target2;
+	//#ifdef APPLY_FIXES
+	//float4 geo_normal : SV_Target3; 			// geometry normal (XYZ)
+	//#endif
 #endif	
 };
 
@@ -20,7 +23,7 @@ float3 d3dSRGBGamma(float3 Clinear)
 
 #endif
 
-albedo_pixel convert_to_albedo_target(in float4 albedo, in float3 normal, in float pos_w)
+albedo_pixel convert_to_albedo_target(in float4 albedo, in float3 normal, in float pos_w, in float3 geo_normal)
 {
 	albedo_pixel result;
 #if defined(pc) && (DX_VERSION == 9)
@@ -34,12 +37,16 @@ albedo_pixel convert_to_albedo_target(in float4 albedo, in float3 normal, in flo
 
 #if defined(pc) && (DX_VERSION == 9)
 	result.pos_w = pos_w;
+	//#ifdef APPLY_FIXES
+	//result.geo_normal.xyz = geo_normal * 0.5f + 0.5f;
+	//result.geo_normal.w = albedo.w;
+	//#endif
 #endif	
 	
 	return result;
 }
 
-albedo_pixel convert_to_albedo_target_no_srgb(in float4 albedo, in float3 normal, in float pos_w)
+albedo_pixel convert_to_albedo_target_no_srgb(in float4 albedo, in float3 normal, in float pos_w, in float3 geo_normal)
 {
 	albedo_pixel result;
 
@@ -50,6 +57,10 @@ albedo_pixel convert_to_albedo_target_no_srgb(in float4 albedo, in float3 normal
 
 #if defined(pc) && (DX_VERSION == 9)
 	result.pos_w = pos_w;
+	//#ifdef APPLY_FIXES
+	//result.geo_normal.xyz = geo_normal * 0.5f + 0.5f;
+	//result.geo_normal.w = albedo.w;
+	//#endif
 #endif	
 	
 	return result;

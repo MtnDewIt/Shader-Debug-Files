@@ -160,7 +160,7 @@ albedo_pixel albedo_ps(
     albedo.rgb = cross(vsout.binormal.xyz, vsout.tangent.xyz);
 	#endif
 	
-	return convert_to_albedo_target(albedo, bump_normal, vsout.normal.w);
+	return convert_to_albedo_target(albedo, bump_normal, vsout.normal.w, tangent_frame[2]);
 }
 
 

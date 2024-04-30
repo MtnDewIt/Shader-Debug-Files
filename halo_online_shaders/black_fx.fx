@@ -89,7 +89,8 @@ albedo_pixel albedo_ps(
 	return convert_to_albedo_target(
 		float4(color, 0), 
 		float4(0, 0, 0, 0),
-		0);
+		0, 
+		float3(0, 0, 0));
 }
 
 #if DX_VERSION == 11
