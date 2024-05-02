@@ -11,6 +11,13 @@ Copyright (c) Microsoft Corporation, 2005. all rights reserved.
 #include "simple_lights.fx"
 #include "utilities.fx"
 
+// we have separate reach ps
+#ifdef PIXEL_SHADER
+#ifdef APPLY_FIXES
+#include "water_shading_reach.fx"
+#endif
+#endif
+
 /* vertex shader implementation */
 #ifdef VERTEX_SHADER
 
@@ -28,6 +35,10 @@ CATEGORY_PARAM(category_global_shape);
 
 #ifndef category_waveshape
 CATEGORY_PARAM(category_waveshape);
+#endif
+
+#ifndef category_reach_compatibility
+CATEGORY_PARAM(category_reach_compatibility);
 #endif
 
 float4 barycentric_interpolate(float4 a, float4 b, float4 c, float3 weights)
@@ -335,14 +346,23 @@ s_water_interpolators transform_vertex( s_water_render_vertex IN )
 	incident_ws.xyz= Camera_Position - IN.position.xyz;		
 	incident_ws.w= length(incident_ws.xyz);
 	incident_ws.xyz= normalize(incident_ws.xyz);
-	float mipmap_level= max(incident_ws.w / wave_visual_damping_distance, 1.0f); 		
+
+	float min_mip_level = 1.0f;
+	if ( !TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+		min_mip_level = 0.0f;
+
+	float mipmap_level= max(incident_ws.w / wave_visual_damping_distance, min_mip_level); 		
 
 	// apply global shape control
 	float height_scale_global= 1.0f;
 	float choppy_scale_global= 1.0f;
 	if ( TEST_CATEGORY_OPTION(global_shape, paint) )
 	{
-		float4 shape_control= sample2Dlod(global_shape_texture, IN.base_tex.xy, mipmap_level);
+		float4 shape_control;
+		if ( !TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+			shape_control= tex2Dlod(global_shape_texture, float4(transform_texcoord(IN.base_tex.xy, global_shape_texture_xform), 0, mipmap_level));
+		else
+			shape_control= sample2Dlod(global_shape_texture, IN.base_tex.xy, mipmap_level);
 		height_scale_global= shape_control.x;
 		choppy_scale_global= shape_control.y;
 	}
@@ -392,50 +412,73 @@ s_water_interpolators transform_vertex( s_water_render_vertex IN )
 			#endif
 
 
-#if DX_VERSION == 9			
+//#if DX_VERSION == 9			
 			displacement= sample3Dlod(wave_displacement_array, texcoord.xyz, texcoord.w).xyz;			
 			float3 displacement_aux= sample3Dlod(wave_displacement_array, texcoord_aux.xyz, texcoord_aux.w).xyz;		
-#elif DX_VERSION == 11
-			float4 array_texcoord = convert_3d_texture_coord_to_array_texture(wave_displacement_array, texcoord.xyz);
-			float4 array_texcoord_aux = convert_3d_texture_coord_to_array_texture(wave_displacement_array, texcoord_aux.xyz);
-			float array_texcoord_t = frac(array_texcoord.z);
-			float array_texcoord_aux_t = frac(array_texcoord_aux.z);
-			array_texcoord.zw = floor(array_texcoord.zw);
-			array_texcoord_aux.zw = floor(array_texcoord_aux.zw);			
-			
-			displacement = lerp(
-				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord.xyz, texcoord.w),
-				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord.xyw, texcoord.w),
-				frac(array_texcoord_t));
-			float3 displacement_aux = lerp(
-				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord_aux.xyz, texcoord_aux.w),
-				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord_aux.xyw, texcoord_aux.w),
-				frac(array_texcoord_aux_t));
-#endif
+//#elif DX_VERSION == 11
+//			float4 array_texcoord = convert_3d_texture_coord_to_array_texture(wave_displacement_array, texcoord.xyz);
+//			float4 array_texcoord_aux = convert_3d_texture_coord_to_array_texture(wave_displacement_array, texcoord_aux.xyz);
+//			float array_texcoord_t = frac(array_texcoord.z);
+//			float array_texcoord_aux_t = frac(array_texcoord_aux.z);
+//			array_texcoord.zw = floor(array_texcoord.zw);
+//			array_texcoord_aux.zw = floor(array_texcoord_aux.zw);			
+//			
+//			displacement = lerp(
+//				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord.xyz, texcoord.w),
+//				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord.xyw, texcoord.w),
+//				frac(array_texcoord_t));
+//			float3 displacement_aux = lerp(
+//				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord_aux.xyz, texcoord_aux.w),
+//				wave_displacement_array.t.SampleLevel(wave_displacement_array.s, array_texcoord_aux.xyw, texcoord_aux.w),
+//				frac(array_texcoord_aux_t));
+//#endif
 			//float3 displacement_aux= 0.0f;
 			
-
 			// restore displacement
-			displacement= restore_displacement(
-								displacement,
-								displacement_range,
-								displacement_min,
-								wave_height);	
+			if ( !TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+			{
+				displacement= restore_displacement(
+									displacement,
+									2.0f,
+									-1.0f,
+									wave_height);	
 
-			displacement_aux= restore_displacement(
-								displacement_aux,
-								displacement_range,
-								displacement_min,
-								wave_height_aux);		
+				displacement_aux= restore_displacement(
+									displacement_aux,
+									2.0f,
+									-1.0f,
+									wave_height_aux);
+			}
+			else
+			{
+				displacement= restore_displacement(
+									displacement,
+									displacement_range,
+									displacement_min,
+									wave_height);	
+
+				displacement_aux= restore_displacement(
+									displacement_aux,
+									displacement_range,
+									displacement_min,
+									wave_height_aux);		
+			}
 
 			float wave_scale= sqrt( wave_displacement_array_xform.x * wave_displacement_array_xform.y);
 			//float wave_scale_aux= sqrt( wave_slope_array_xform.x * wave_slope_array_xform.y);
 			float wave_scale_aux= wave_scale;	
 
 			// scale and accumulate waves	
-			displacement/= wave_scale;
-			displacement_aux/= wave_scale_aux;
-			displacement= displacement + displacement_aux;	
+			if ( !TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+			{
+				displacement= displacement + displacement_aux;
+			}
+			else
+			{
+				displacement/= wave_scale;
+				displacement_aux/= wave_scale_aux;
+				displacement= displacement + displacement_aux;	
+			}
 
 			displacement= apply_choppiness(
 								displacement,						
@@ -443,9 +486,12 @@ s_water_interpolators transform_vertex( s_water_render_vertex IN )
 								choppiness_backward * choppy_scale_global, 
 								choppiness_side * choppy_scale_global);
 
-			// convert procedure wave displacement from texture space to geometry space
-			displacement*= IN.local_info.x;	
-			max_height_relative= 0.5f * IN.local_info.x * displacement_range_z*(wave_height + wave_height_aux) / wave_scale;
+			if ( TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+			{
+				// convert procedure wave displacement from texture space to geometry space
+				displacement*= IN.local_info.x;	
+				max_height_relative= 0.5f * IN.local_info.x * displacement_range_z*(wave_height + wave_height_aux) / wave_scale;
+			}
 
 			// apply global height control
 			displacement.z*= height_scale_global;		
@@ -642,6 +688,13 @@ float compute_fresnel(
 	return r0 + (1.0 - r0) * pow(1.0 - eye_dot_normal, 2.5);
 }
 
+float compute_fog_transparency( 
+			float murkiness,
+			float negative_depth)
+{
+	return saturate(exp2(murkiness * negative_depth));
+}
+
 float compute_fog_factor( 
 			float murkiness,
 			float depth)
@@ -664,6 +717,9 @@ float3 decode_bpp16_luvw(
 // shade water surface
 accum_pixel water_shading(s_water_interpolators INTERPOLATORS)
 {
+	if ( !TEST_CATEGORY_OPTION(reach_compatibility, disabled) )
+		return water_shading_reach(INTERPOLATORS);
+
 #if DX_VERSION == 11
 	// calcuate texcoord in screen space
 	float2 texcoord_ss0 = INTERPOLATORS.position_ss.xy / INTERPOLATORS.position_ss.w;
