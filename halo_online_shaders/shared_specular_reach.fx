@@ -11,17 +11,17 @@ float fresnel_curve_steepness; //
 // this should be renamed to albedo_blend
 float albedo_specular_tint_blend; // mix albedo color into specular reflectance
 
-//#if ALBEDO_TYPE(calc_albedo_ps) != ALBEDO_TYPE_calc_albedo_four_change_color_applying_to_specular_ps
+#if ALBEDO_TYPE(calc_albedo_ps) != ALBEDO_TYPE_calc_albedo_four_change_color_applying_to_specular_ps
 
 float3	normal_specular_tint;						// specular color of the normal specular lobe
 float3	glancing_specular_tint;						// specular color of the glancing specular lobe
 
-//#else
-//
-//#define normal_specular_tint tertiary_change_color
-//#define glancing_specular_tint quaternary_change_color
-//
-//#endif
+#else
+
+#define normal_specular_tint tertiary_change_color
+#define glancing_specular_tint quaternary_change_color
+
+#endif
 
 
 float roughness;

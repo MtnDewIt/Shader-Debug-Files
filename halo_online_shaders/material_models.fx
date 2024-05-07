@@ -20,6 +20,8 @@
 #define MATERIAL_TYPE_two_lobe_phong_tint_map 12
 #define MATERIAL_TYPE_hair 13
 #define MATERIAL_TYPE_custom_specular 14
+#define MATERIAL_TYPE_cook_torrance_reach 15
+#define MATERIAL_TYPE_two_lobe_phong_reach 16
 
 
 // all material models must define these 4 functions
@@ -89,6 +91,14 @@ PARAM(bool, no_dynamic_lights);
 #endif
 
 //*****************************************************************************
+// cook torrance reach
+//*****************************************************************************
+#if MATERIAL_TYPE(material_type) == MATERIAL_TYPE_cook_torrance_reach
+#include "cook_torrance_reach.fx"
+#define NO_ALPHA_TO_COVERAGE
+#endif
+
+//*****************************************************************************
 // cook torrance with custom cube texture
 //*****************************************************************************
 #if MATERIAL_TYPE(material_type) == MATERIAL_TYPE_cook_torrance_custom_cube
@@ -149,6 +159,14 @@ PARAM(bool, no_dynamic_lights);
 //*****************************************************************************
 #if MATERIAL_TYPE(material_type) == MATERIAL_TYPE_two_lobe_phong
 #include "two_lobe_phong.fx"
+#define NO_ALPHA_TO_COVERAGE
+#endif
+
+//*****************************************************************************
+// two lobe phong reach model
+//*****************************************************************************
+#if MATERIAL_TYPE(material_type) == MATERIAL_TYPE_two_lobe_phong_reach
+#include "two_lobe_phong_reach.fx"
 #define NO_ALPHA_TO_COVERAGE
 #endif
 

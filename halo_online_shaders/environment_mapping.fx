@@ -342,6 +342,9 @@ float3 sample_environment_map_custom_map_ps(in float3 reflect_dir)
 
 #if ENVMAP_TYPE(envmap_type) == ENVMAP_TYPE_dynamic_reach
 
+	samplerCUBE dynamic_environment_map_0;		// declared by shaders\shader_options\env_map_dynamic.render_method_option
+	samplerCUBE dynamic_environment_map_1;		// declared by shaders\shader_options\env_map_dynamic.render_method_option
+
 float3 calc_environment_map_dynamic_reach_ps(
 	in float3 view_dir,
 	in float3 normal,
@@ -358,10 +361,9 @@ float3 calc_environment_map_dynamic_reach_ps(
 	float grad_x= length(ddx(reflect_dir));
 	float grad_y= length(ddy(reflect_dir));
 	float base_lod= 6.0f * sqrt(max(grad_x, grad_y)) - 0.6f;
-	float lod= max(base_lod, offset_env_reflection_lod(specular_reflectance_and_roughness.w ));
-
-	reflection_0= 0;
-	reflection_1= 0;
+	float lod= max(base_lod, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
+	
+	reflection_0= sampleCUBElod(dynamic_environment_map_0, reflect_dir, lod);
 
 	float3 reflection=  (reflection_0.rgb*reflection_0.rgb * reflection_0.a * 64.0f);
 
