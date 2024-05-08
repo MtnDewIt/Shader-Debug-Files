@@ -9,7 +9,7 @@
 LOCAL_SAMPLER_CUBE(source_sampler, 0);
 LOCAL_SAMPLER_CUBE(divide_sampler, 1);
 
-#define scale param
+#define scale scale
 
 struct screen_output
 {

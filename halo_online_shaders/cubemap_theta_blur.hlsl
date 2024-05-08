@@ -9,7 +9,7 @@
 
 LOCAL_SAMPLER_CUBE(source_sampler, 0);
 
-#define delta param.x
+#define delta delta.x
 
 struct screen_output
 {

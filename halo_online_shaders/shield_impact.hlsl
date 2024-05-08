@@ -91,6 +91,10 @@ accum_pixel default_ps(s_vertex_out pixel_in)
 	float3 semifinal_overshield_color= overshield_factor * (plasma_value1 * overshield_color1 + plasma_value2 * overshield_color2 + non_plasma_value * overshield_ambient_color);
 	
 	float4 final_color= float4(semifinal_shield_impact_color + semifinal_overshield_color, 1.0f) * g_exposure.r;
-	return convert_to_render_target(final_color, false, false);
+	return convert_to_render_target(final_color, false, false
+	#ifdef SSR_ENABLE
+	, 0
+    #endif
+    );
 	
 }

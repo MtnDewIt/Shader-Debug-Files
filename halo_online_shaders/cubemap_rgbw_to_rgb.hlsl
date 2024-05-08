@@ -15,7 +15,7 @@
 
 LOCAL_SAMPLER_CUBE(source_sampler, 0);
 
-#define exposure param
+#define exposure scale
 
 struct screen_output
 {

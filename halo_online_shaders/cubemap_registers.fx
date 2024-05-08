@@ -8,11 +8,12 @@
 #include "cubemap_registers.h"
 
 // source texture size (width, height)
+PIXEL_CONSTANT(float, delta, k_ps_cubemap_param);
 PIXEL_CONSTANT(float2, source_size, k_ps_cubemap_source_size);
 PIXEL_CONSTANT(float3, forward, k_ps_cubemap_forward);
 PIXEL_CONSTANT(float3, up, k_ps_cubemap_up);
 PIXEL_CONSTANT(float3, left, k_ps_cubemap_left);
-PIXEL_CONSTANT(float4, param, k_ps_cubemap_param);
+PIXEL_CONSTANT(float4, scale, k_ps_cubemap_param);
 
 #elif DX_VERSION == 11
 
