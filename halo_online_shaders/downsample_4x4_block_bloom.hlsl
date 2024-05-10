@@ -22,25 +22,25 @@ float4 default_ps(screen_output IN) : SV_Target
 
 	float4 sample= tex2D_offset(dark_source_sampler, IN.texcoord, -1, -1);
 #ifdef pc
-		color += sample.rgb;
+		color += sample.rgb * sample.rgb;
 #else
 		color += sample.rgb * sample.rgb;
 #endif
 	sample= tex2D_offset(dark_source_sampler, IN.texcoord, +1, -1);
 #ifdef pc
-		color += sample.rgb;
+		color += sample.rgb * sample.rgb;
 #else
 		color += sample.rgb * sample.rgb;
 #endif
 	sample= tex2D_offset(dark_source_sampler, IN.texcoord, -1, +1);
 #ifdef pc
-		color += sample.rgb;
+		color += sample.rgb * sample.rgb;
 #else
 		color += sample.rgb * sample.rgb;
 #endif
 	sample= tex2D_offset(dark_source_sampler, IN.texcoord, +1, +1);
 #ifdef pc
-		color += sample.rgb;
+		color += sample.rgb * sample.rgb;
 #else
 		color += sample.rgb * sample.rgb;
 #endif

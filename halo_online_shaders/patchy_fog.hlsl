@@ -26,7 +26,7 @@ struct s_vertex_in
 struct s_vertex_out
 {
 	float4 position : SV_Position;
-	float3 texcoord : TEXCOORD0;
+	float2 texcoord : TEXCOORD0;
 	float4 world_space : TEXCOORD1;
 };
 
@@ -45,11 +45,11 @@ s_vertex_out default_vs(
 	vertex_out.world_space= vertex_in.position;
 	vertex_out.world_space/= vertex_out.world_space.w;
 #ifndef pc	
-	vertex_out.texcoord.xy= predefined_texcoords[vertex_index % 4];
+	vertex_out.texcoord = predefined_texcoords[vertex_index % 4];
 #else
-	vertex_out.texcoord.xy= vertex_in.texcoord;
+	vertex_out.texcoord = vertex_in.texcoord;
 #endif
-	vertex_out.texcoord.z = vertex_out.position.w;
+	//vertex_out.texcoord.z = vertex_out.position.w;
 	
 	return vertex_out;
 }
@@ -214,13 +214,13 @@ accum_pixel default_ps(s_vertex_out pixel_in, SCREEN_POSITION_INPUT(screen_posit
 	float3 inscatter= SUN_INTENSITY_OVER_TM * beta_p_theta * extinction;
 
 	// the fog have to be faded near opaque surfaces:
-	float fog_depth = pixel_in.texcoord.z;
-	float depth_diff = view_space_scene_depth.x - fog_depth;
-	float full_fade_edge = 0.03; // full fade closer then 0.3 ft.
-	float no_fade_edge = 0.3; // no fade beyond the 3 ft. range
-	float fog_fade = smoothstep(full_fade_edge, no_fade_edge, depth_diff);
+	//float fog_depth = pixel_in.texcoord.z;
+	//float depth_diff = view_space_scene_depth.x - fog_depth;
+	//float full_fade_edge = 0.03; // full fade closer then 0.3 ft.
+	//float no_fade_edge = 0.3; // no fade beyond the 3 ft. range
+	//float fog_fade = smoothstep(full_fade_edge, no_fade_edge, depth_diff);
 
-	inscatter *= fog_fade;
+	//inscatter *= fog_fade;
 
 	return convert_to_render_target(float4(inscatter * g_exposure.r, extinction), false, true
 	#ifdef SSR_ENABLE
