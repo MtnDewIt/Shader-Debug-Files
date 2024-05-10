@@ -8,10 +8,10 @@
 
 //@generate screen
 
-#define ZBUFFER_SCALE (texture_params.r)
-#define ZBUFFER_BIAS (texture_params.g)
-#define TEXEL_SIZE_X (texture_params.b)
-#define TEXEL_SIZE_Y (texture_params.a)
+#define ZBUFFER_SCALE (p_lighting_constant_8.r)
+#define ZBUFFER_BIAS (p_lighting_constant_8.g)
+#define TEXEL_SIZE_X (p_lighting_constant_8.b)
+#define TEXEL_SIZE_Y (p_lighting_constant_8.a)
 
 #if DX_VERSION == 9
 #define READ_TEXEL(xOffset, yOffset) (ZBUFFER_SCALE / sample2D(source_sampler, float2(texcoord.x + (xOffset * TEXEL_SIZE_X), texcoord.y + (yOffset * TEXEL_SIZE_Y))).r + ZBUFFER_BIAS)
@@ -108,7 +108,7 @@ float4 default_ps(screen_output IN) : SV_Target
 	float stencil =  raw_stencil / 255.0f;
 #endif   
    
-   result.g= step(64.0f / 255.0f, stencil);
+   result.g= step(64.0f / 255.0f, 0);
 
    return scale * result;
 }

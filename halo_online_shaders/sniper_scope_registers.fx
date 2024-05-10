@@ -7,7 +7,7 @@
 
 #include "sniper_scope_registers.h"
 
-PIXEL_CONSTANT(float4, texture_params, k_ps_sniper_scope_texture_params);
+PIXEL_CONSTANT(float4, p_lighting_constant_8, k_ps_sniper_scope_texture_params);
 
 #elif DX_VERSION == 11
 
