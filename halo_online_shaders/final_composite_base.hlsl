@@ -1,6 +1,8 @@
 #line 2 "source\rasterizer\hlsl\final_composite_base.hlsl"
 
+#ifndef SCREENSHOT
 #define POSTPROCESS_USE_CUSTOM_VERTEX_SHADER 1
+#endif
 
 #include "global.fx"
 #include "hlsl_vertex_types.fx"
@@ -101,7 +103,8 @@ float3 default_calc_blend(in float2 texcoord, in float4 combined, in float4 bloo
 //#ifdef pc
 //	return combined + bloom;
 //#else // XENON
-    return combined.rgb * (texcoord.x > 0.5f ? 1.0f : bloom.a) + bloom.rgb;
+    //return combined.rgb * (texcoord.x > 0.5f ? 1.0f : bloom.a) + bloom.rgb;
+	return combined + bloom;
 //#endif // XENON
 }
 
@@ -124,6 +127,8 @@ struct s_final_composite_output
     float4 xformed_texcoord : TEXCOORD1; // xy - pixel-space texcoord, zw - noise-space texcoord
 };
 
+#ifndef SCREENSHOT
+
 s_final_composite_output default_vs(vertex_type IN)
 {
     s_final_composite_output OUT;
@@ -142,6 +147,8 @@ s_final_composite_output default_vs(vertex_type IN)
 	
 	return OUT;
 }
+
+#endif // !SCREENSHOT
 
 float4 default_ps(in s_final_composite_output input) : SV_Target
 {
