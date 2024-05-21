@@ -308,9 +308,13 @@ accum_pixel static_common_ps(
     float2 screen_texcoord = (vsout.position.xy + float2(0.5f, 0.5f)) / texture_size.xy;
     float4 albedo = tex2D(albedo_texture, screen_texcoord);
 	
+	// need to recalculate for alpha testing from albedo
+    float4 albedo_alpha_test_only;
+    calc_albedo_ps(vsout.texcoord, albedo_alpha_test_only, float3(0, 0, 1), misc, float3(0, 0, 0), vsout.position.xy);
+	
     float output_alpha;
 	// do alpha test
-    calc_alpha_test_ps(vsout.texcoord, output_alpha, albedo.a);
+    calc_alpha_test_ps(vsout.texcoord, output_alpha, albedo_alpha_test_only.a);
 	
 	out_color.xyz = (vsout.lighting * albedo.xyz * vsout.extinction + vsout.inscatter * BLEND_FOG_INSCATTER_SCALE) * g_exposure.rrr;
 	out_color.w= 0.0f;

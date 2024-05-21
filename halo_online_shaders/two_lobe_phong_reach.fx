@@ -2,6 +2,7 @@
 #define _TWO_LOBE_PHONG_FX_
 
 #include "shared_specular_reach.fx"
+#include "vmf_util.fx"
 //#include "templated\materials\diffuse_specular.fx"
 //#include "templated\materials\phong_specular.fx"
 
@@ -192,6 +193,8 @@ void calc_material_two_lobe_phong_reach_ps(
 	if (!no_dynamic_lights)
 	{
 		float3 fragment_position_world= Camera_Position_PS - fragment_to_camera_world;
+		
+		// todo: switch to reach lights
 		calc_simple_lights_analytical(
 			fragment_position_world,
 			surface_normal,
@@ -222,13 +225,26 @@ void calc_material_two_lobe_phong_reach_ps(
 	//}
 	{
 		float4 temp[4]= {sh_lighting_coefficients[0], sh_lighting_coefficients[1], sh_lighting_coefficients[2], sh_lighting_coefficients[3]};
-
+		
 		calculate_area_specular_phong_order_2(
 			view_reflect_dir,
 			temp,
 			material_parameters.a,
 			final_specular_tint_color.rgb,
 			area_specular_radiance);
+		
+		// todo: fix indirect lighting
+		/*
+		dual_vmf_diffuse_specular_with_fresnel_emulated(
+			view_dir,
+			surface_normal,
+			analytical_light_dir,
+			analytical_light_intensity,
+			final_specular_tint_color.rgb,
+			final_specular_tint_color.a,
+			area_specular_radiance
+		);
+		*/
 	}
 	
 	//scaling and masking

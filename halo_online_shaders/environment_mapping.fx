@@ -60,11 +60,11 @@ float3 calc_environment_map_per_pixel_ps(
 	reflect_dir.y= -reflect_dir.y;
 	
 	float4 reflection;
-#ifdef pc	
-	reflection= sampleCUBE(environment_map, reflect_dir);
-#else
+//#ifdef pc	
+//	reflection= sampleCUBE(environment_map, reflect_dir);
+//#else
 	reflection= sampleCUBElod(environment_map, reflect_dir, 0.0f);
-#endif
+//#endif
 
 	ssr_color.rgb = env_tint_color * specular_reflectance_and_roughness.xyz;
 	ssr_color.a = specular_reflectance_and_roughness.w * env_roughness_scale;
@@ -129,7 +129,7 @@ float3 calc_environment_map_dynamic_ps(
 	float grad_x= length(ddx(reflect_dir));
 	float grad_y= length(ddy(reflect_dir));
 	float base_lod= 6.0f * sqrt(max(grad_x, grad_y)) - 0.6f;
-	float lod= max(base_lod, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
+	float lod= max(0.0f, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
 	
 	reflection_0= sampleCUBElod(dynamic_environment_map_0, reflect_dir, lod);
 	reflection_1= sampleCUBElod(dynamic_environment_map_1, reflect_dir, lod);
@@ -306,7 +306,7 @@ float3 calc_environment_map_custom_map_ps(
     float grad_x = length(ddx(reflect_dir));
     float grad_y = length(ddy(reflect_dir));
     float base_lod = 6.0f * sqrt(max(grad_x, grad_y)) - 0.6f;
-    float lod = max(base_lod, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
+    float lod = max(0.0f, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
 
     float4 reflection = sampleCUBElod(environment_map, reflect_dir, lod);
 
@@ -331,7 +331,7 @@ float3 sample_environment_map_custom_map_ps(in float3 reflect_dir)
 	float grad_y = length(ddy(reflect_dir));
 	float base_lod = 6.0f * sqrt(max(grad_x, grad_y)) - 0.6f;
 
-	reflection = sampleCUBElod(environment_map, reflect_dir, base_lod);
+	reflection = sampleCUBElod(environment_map, reflect_dir, 0.0f);
 #else
 	reflection = sampleCUBElod(environment_map, reflect_dir, 0.0f);
 #endif
@@ -361,7 +361,7 @@ float3 calc_environment_map_dynamic_reach_ps(
 	float grad_x= length(ddx(reflect_dir));
 	float grad_y= length(ddy(reflect_dir));
 	float base_lod= 6.0f * sqrt(max(grad_x, grad_y)) - 0.6f;
-	float lod= max(base_lod, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
+	float lod= max(0.0f, specular_reflectance_and_roughness.w * env_roughness_scale * 4);
 	
 	reflection_0= sampleCUBElod(dynamic_environment_map_0, reflect_dir, lod);
 

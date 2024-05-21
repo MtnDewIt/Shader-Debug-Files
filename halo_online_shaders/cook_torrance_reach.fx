@@ -54,6 +54,8 @@ float fresnel_curve_steepness;
 // marco
 #define SQR(x) ((x)*(x))
 
+#include "vmf_util.fx"
+
 
 float get_material_cook_torrance_reach_specular_power(float power_or_roughness)
 {
@@ -64,7 +66,7 @@ float get_material_cook_torrance_reach_specular_power(float power_or_roughness)
 	//}
 	//else
 	{
-        return 0.27291 * pow(roughness, -2.1973); // ###ctchou $TODO low roughness still needs slightly higher power - try tweaking
+        return 0.27291 * pow(roughness, -1.3973f); 
     }
 }
 
@@ -117,7 +119,7 @@ void calc_material_analytic_specular_cook_torrance_reach_ps(
 	out float3 specular_fresnel_color, // fresnel(specular_albedo_color)
 	out float3 normal_specular_blend_albedo_color, // specular reflectance at normal incidence
 	out float3 analytic_specular_radiance)					// return specular radiance from this light				<--- ONLY REQUIRED OUTPUT FOR DYNAMIC LIGHTS
-{
+{	
     float3 final_specular_color;
 	float specular_power;
 	calculate_fresnel(
@@ -436,7 +438,7 @@ void calc_material_cook_torrance_base(
 		if (!no_dynamic_lights)
 		{
 			float3 fragment_position_world= Camera_Position_PS - fragment_to_camera_world;
-			calc_simple_lights_analytical(
+			calc_simple_lights_analytical_reach(
 				fragment_position_world,
 				view_normal,
 				view_reflect_dir_world,											// view direction = fragment to camera,   reflected around fragment normal
@@ -461,46 +463,59 @@ void calc_material_cook_torrance_base(
 		
 // here is where vmf would come into play.
 // we are using order2 as per macro in reach.
+// UPDATE: using order3 for more accurate lighting
 		//if (order3_area_specular)
-		//{
-		//	float4 sh_0= sh_lighting_coefficients[0];
-		//	float4 sh_312[3]= {sh_lighting_coefficients[1], sh_lighting_coefficients[2], sh_lighting_coefficients[3]};
-		//	float4 sh_457[3]= {sh_lighting_coefficients[4], sh_lighting_coefficients[5], sh_lighting_coefficients[6]};
-		//	float4 sh_8866[3]= {sh_lighting_coefficients[7], sh_lighting_coefficients[8], sh_lighting_coefficients[9]};
-		//	sh_glossy_ct_3(
-		//		view_dir,
-		//		view_normal,
-		//		sh_0,
-		//		sh_312,
-		//		sh_457,
-		//		sh_8866,	//NEW_LIGHTMAP: changing to linear
-		//		spatially_varying_material_parameters.a,
-		//		r_dot_l,
-		//		1,
-		//		specular_part,
-		//		schlick_part);	
-		//}
-		//else
 		{
-		
 			float4 sh_0= sh_lighting_coefficients[0];
 			float4 sh_312[3]= {sh_lighting_coefficients[1], sh_lighting_coefficients[2], sh_lighting_coefficients[3]};
-			
-			sh_glossy_ct_2(
+			float4 sh_457[3]= {sh_lighting_coefficients[4], sh_lighting_coefficients[5], sh_lighting_coefficients[6]};
+			float4 sh_8866[3]= {sh_lighting_coefficients[7], sh_lighting_coefficients[8], sh_lighting_coefficients[9]};
+			sh_glossy_ct_3(
 				view_dir,
 				view_normal,
 				sh_0,
 				sh_312,
+				sh_457,
+				sh_8866,	//NEW_LIGHTMAP: changing to linear
 				spatially_varying_material_parameters.a,
 				r_dot_l,
 				1,
 				specular_part,
 				schlick_part);	
 		}
+		//else
+		//{
+		//
+		//	float4 sh_0= sh_lighting_coefficients[0];
+		//	float4 sh_312[3]= {sh_lighting_coefficients[1], sh_lighting_coefficients[2], sh_lighting_coefficients[3]};
+		//	
+		//	sh_glossy_ct_2(
+		//		view_dir,
+		//		view_normal,
+		//		sh_0,
+		//		sh_312,
+		//		spatially_varying_material_parameters.a,
+		//		r_dot_l,
+		//		1,
+		//		specular_part,
+		//		schlick_part);	
+		//}
 						
 		sh_glossy= specular_part * normal_specular_blend_albedo_color + (1 - normal_specular_blend_albedo_color) * schlick_part;
+
+		//dual_vmf_diffuse_specular_with_fresnel_emulated(
+		//	view_dir,
+		//	view_normal,
+		//	view_light_dir,
+		//	light_color,
+		//	final_specular_tint_color.rgb,
+		//	roughness,
+		//	sh_glossy
+		//);
+		
+		float3 fake_prebaked_analytical_light = spec_tint; // (input)envmap_area_specular_only * final_specular_tint_color.rgb
 		envmap_specular_reflectance_and_roughness.w= spatially_varying_material_parameters.a;
-		envmap_area_specular_only= final_specular_tint_color.rgb + sh_glossy * prt_ravi_diff.z; // todo
+		envmap_area_specular_only= fake_prebaked_analytical_light * sh_glossy * prt_ravi_diff.z; // todo
 				
 		//scaling and masking
 		

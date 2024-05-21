@@ -142,6 +142,61 @@ void calc_simple_lights_analytical(
     specularly_reflected_light *= specular_power;
 }
 
+void calc_simple_lights_analytical_reach(
+		in float3 fragment_position_world,
+		in float3 surface_normal,
+		in float3 view_reflect_dir_world,							// view direction = fragment to camera,   reflected around fragment normal
+		in float specular_power,
+		out float3 diffusely_reflected_light,						// diffusely reflected light (not including diffuse surface color)
+		out float3 specularly_reflected_light)						// specularly reflected light (not including specular surface color)
+{
+	diffusely_reflected_light= float3(0.0f, 0.0f, 0.0f);
+	specularly_reflected_light= float3(0.0f, 0.0f, 0.0f);
+	
+	// add in simple lights
+#ifndef pc	
+	[loop]
+#endif
+	for (int light_index= 0; light_index < SIMPLE_LIGHT_COUNT; light_index++)
+	{
+		// Compute distance squared to light, to see if we can skip this light.
+		// Note: This is also computed in calculate_simple_light below, but the shader
+		// compiler will remove the second computation and share the results of this
+		// computation.
+		float3 fragment_to_light_test= LIGHT_POSITION - fragment_position_world;				// vector from fragment to light
+		float  light_dist2_test= dot(fragment_to_light_test, fragment_to_light_test);				// distance to the light, squared
+		if( light_dist2_test >= LIGHT_BOUNDING_RADIUS )
+		{
+			// debug: use a strong green tint to highlight area outside of the light's radius
+			//diffusely_reflected_light += float3( 0, 1, 0 );
+			//specularly_reflected_light += float3( 0, 1, 0 );
+			continue;
+		}
+		
+		float3 fragment_to_light;
+		float3 light_radiance;
+		calculate_simple_light(
+			light_index, fragment_position_world, light_radiance, fragment_to_light);
+		
+		// calculate diffuse cosine lobe (diffuse surface N dot L)
+		float cosine_lobe= dot(surface_normal, fragment_to_light) + 0.06f;  // + 0.05 so that the grenade on the ground can work well.
+		
+		diffusely_reflected_light  += light_radiance * saturate(cosine_lobe) / 3.14159265358979323846;			// add light with cosine lobe (clamped positive)
+		
+		// step(0.0f, cosine_lobe)
+		//specularly_reflected_light += light_radiance * pow(max(0.0f, dot(fragment_to_light, view_reflect_dir_world)), specular_power);
+		float specular_cosine_lobe= saturate(dot(fragment_to_light, view_reflect_dir_world));
+		specularly_reflected_light += light_radiance * pow(specular_cosine_lobe, specular_power);
+#ifdef pc
+		if (light_index >= 7)		// god damn PC compiler likes to unroll these loops - only support 8 lights or so (:P)
+		{
+			light_index= 100;
+		}
+#endif // pc
+	}
+	specularly_reflected_light *= (1+specular_power);
+}
+
 #else
 
 void calc_simple_lights_analytical(

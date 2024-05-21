@@ -7,7 +7,7 @@
 
 #include "shadow_geometry_registers.h"
 
-PIXEL_CONSTANT(float4, shadow_color, 	k_ps_shadow_geometry_color);
+PIXEL_CONSTANT(float4, shadow_color, 	k_ps_shadow_geometry_color)
 
 #elif DX_VERSION == 11
 
