@@ -145,6 +145,17 @@ namespace HaloShaderGenerator
         {
             List<D3D.SHADER_MACRO> macros = new List<D3D.SHADER_MACRO>();
 
+            // Having apply fixes disabled generates 1:1 shaders
+            if (explicitShader == ExplicitShader.blur_11_horizontal ||
+                explicitShader == ExplicitShader.blur_11_vertical ||
+                explicitShader == ExplicitShader.double_gradient ||
+                explicitShader == ExplicitShader.gradient ||
+                explicitShader == ExplicitShader.kernel_5 ||
+                explicitShader == ExplicitShader.patchy_fog ||
+                explicitShader == ExplicitShader.screenshot_combine ||
+                explicitShader == ExplicitShader.screenshot_combine_dof)
+                applyFixes = false;
+
             CreateExplicitMacros(macros, entryPoint, applyFixes, true, vertexType);
 
             string entryName = entryPoint.ToString().ToLower() + "_vs";
