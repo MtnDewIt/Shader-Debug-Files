@@ -26,7 +26,11 @@ struct s_vertex_in
 struct s_vertex_out
 {
 	float4 position : SV_Position;
+#ifdef APPLY_FIXES
 	float3 texcoord : TEXCOORD0;
+#else
+    float2 texcoord : TEXCOORD0;
+#endif
 	float4 world_space : TEXCOORD1;
 };
 
@@ -49,7 +53,9 @@ s_vertex_out default_vs(
 #else
 	vertex_out.texcoord.xy= vertex_in.texcoord;
 #endif
+#ifdef APPLY_FIXES
 	vertex_out.texcoord.z = vertex_out.position.w;
+#endif
 	
 	return vertex_out;
 }
