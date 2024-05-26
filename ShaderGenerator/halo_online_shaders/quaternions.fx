@@ -20,15 +20,18 @@ float4 quaternion_multiply(float4 q0, float4 q1)		// multiplies q0 by q1   (quat
 	float4 result;
 
 #ifdef QUATERNIONS_USE_UNOPTIMIZED_HLSL
-	//result = float4(cross(q0.xyz, q1.xyz),							// crs result.xyz_, q0.xyz ,  q1.xyz
-	//		-dot(q0.xyz, q1.xyz));									// dp3 result.___w, q0.xyz , -q1.xyz
-	//result.xyz  += q0.w * q1.xyz;									// mad result.xyz_, q0.www ,  q1.xyz ,  result.xyz 
-	//result.xyzw += q1.w * q0.xyzw;									// mad result.xyzw, q1.wwww,  q0.xyzw,  result.xyzw
+#ifdef DECORATOR_EDIT
+	result = float4(cross(q0.xyz, q1.xyz),							// crs result.xyz_, q0.xyz ,  q1.xyz
+			-dot(q0.xyz, q1.xyz));									// dp3 result.___w, q0.xyz , -q1.xyz
+	result.xyz  += q0.w * q1.xyz;									// mad result.xyz_, q0.www ,  q1.xyz ,  result.xyz 
+	result.xyzw += q1.w * q0.xyzw;									// mad result.xyzw, q1.wwww,  q0.xyzw,  result.xyzw
+#else
 	result.w = dot(q0.xyz, -q1.xyz);
 	result.xyz = q0.zxy * q1.yzx;
 	result.xyz = q0.yzx * q1.zxy + -result.xyz;
 	result.xyz = q0.w * q1.xyz + result.xyz;
 	result.xyzw = q1.w * q0 + result;
+#endif
 #else
 
 	// I don't trust the compiler...
@@ -50,12 +53,15 @@ float4 quaternion_multiply_conjugate(float4 q0, float4 q1)	// multiplies q0 by t
 	float4 result;
 	
 #ifdef QUATERNIONS_USE_UNOPTIMIZED_HLSL
-	//result= quaternion_multiply(q0, float4(-q1.xyz, q1.w));
+#ifdef DECORATOR_EDIT
+	result= quaternion_multiply(q0, float4(-q1.xyz, q1.w));
+#else
 	result.w = dot(q0.xyz, q1.xyz);
 	result.xyz = q0.zxy * -q1.yzx;
 	result.xyz = q0.yzx * -q1.zxy + -result.xyz;
 	result.xyz = q0.w * -q1.xyz + result.xyz;
 	result.xyzw = q1.w * q0 + result;
+#endif
 #else
 
 	// same as quaternion multiply, but with negated xyz components
