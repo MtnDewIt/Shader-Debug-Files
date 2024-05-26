@@ -44,9 +44,8 @@ Copyright (c) Microsoft Corporation, 2005. all rights reserved.
 	#define ripple_slope_ps		dynamic_light_ps
 	#define underwater_vs			shadow_apply_vs
 	#define underwater_ps			shadow_apply_ps
-    #define underwater_new_vs       lightmap_debug_mode_vs
+	#define underwater_new_vs       lightmap_debug_mode_vs
 	#define underwater_new_ps       lightmap_debug_mode_ps
-
 #endif
 
 //#ifndef pc /* implementation of xenon version */
@@ -762,11 +761,11 @@ s_underwater_interpolators underwater_vs(s_ripple_vertex_input _IN)
 }
 #endif //PC_CPU
 
-s_underwater_interpolators underwater_new_vs(in float2 position : POSITION, in float2 texcoord : TEXCOORD)
+s_underwater_interpolators underwater_new_vs(s_underwater_interpolators _IN)
 {
 	s_underwater_interpolators _OUT;
-	_OUT.position = float4(position, 0, 1);
-	_OUT.position_ss = float4(texcoord, 0, 0);
+	_OUT.position = float4(_IN.position.xy, 0, 1);
+	_OUT.position_ss = float4(_IN.position_ss.xy, 0, 0);
 	return _OUT;
 }
 

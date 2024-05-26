@@ -47,5 +47,6 @@ accum_pixel default_ps(screen_output IN)
 	result.ssr_color = 0.0f;
 	#endif
 
+
 	return result;
 }

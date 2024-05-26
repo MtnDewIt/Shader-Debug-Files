@@ -44,7 +44,6 @@ struct s_world_vertex
 	float3 normal		:NORMAL;
 	float3 tangent		:TANGENT;
 	float3 binormal		:BINORMAL;
-	float4 color		:COLOR0; // Fix the shader generator, so that this isn't necessary
 #else
 	float3 position;
 	float2 texcoord;

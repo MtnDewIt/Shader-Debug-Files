@@ -92,9 +92,10 @@ accum_pixel default_ps(s_vertex_out pixel_in)
 	
 	float4 final_color= float4(semifinal_shield_impact_color + semifinal_overshield_color, 1.0f) * g_exposure.r;
 	return convert_to_render_target(final_color, false, false
+
+	// Not actually neccessary, but this particular explicit shader needs a complete rewrite anyhow
 	#ifdef SSR_ENABLE
 	, 0
     #endif
     );
-	
 }
