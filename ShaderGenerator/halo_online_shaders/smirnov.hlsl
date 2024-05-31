@@ -10,6 +10,8 @@ struct s_interpolators
 	float4 color	:COLOR0;
 };
 
+#ifdef VERTEX_SHADER
+
 s_interpolators default_vs(vertex_type IN)
 {
 	s_interpolators OUT;
@@ -18,6 +20,8 @@ s_interpolators default_vs(vertex_type IN)
 	OUT.color= IN.color;
 	return OUT;
 }
+
+#endif
 
 float4 default_ps(s_interpolators IN) : SV_Target
 {
