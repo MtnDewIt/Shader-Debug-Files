@@ -10,7 +10,7 @@ All modified shader source files and modified TagTool files have been pulled fro
 https://github.com/Beatthezombie/HaloShaderGenerator  
 https://github.com/TheGuardians/TagTool
 
-Below is a detailed breakdown of all changes and modifications which have been applied to the HLSL code included in this repository.
+Below is a detailed breakdown of all changes and modifications that have been applied to the HLSL code included in this repository.
 #
 
 &nbsp;   
@@ -18,7 +18,7 @@ Below is a detailed breakdown of all changes and modifications which have been a
 # Chud Shaders
 Out of the 26 chud shaders included by default within MS23 / ElDewrito, 25 of them will compile perfectly fine by default.  
 
-Out of the 25 that do compile, 4 of them do exhibit differences between the shader data generated and the data that exists in MS23 / ElDewrito.  
+Out of the 25 that do compile, 4 of them exhibit differences between the shader data generated and the data that exists in MS23 / ElDewrito.  
 
 One of the shaders will not compile by default, as this shader's functionality is unknown, and thus no shader source exists for it by default.  
 #
@@ -217,9 +217,9 @@ More research is required before 1:1 shader data can be generated.
 # Explicit Shaders
 Out of the 110 explicit shaders included by default within MS23 / ElDewrito, 78 of them will compile perfectly fine by default.
 
-Out of the 78 that do compile, 33 of them do exhibit differences between the shader data generated and the data that exists in MS23 / ElDewrito.
+Out of the 78 that do compile, 33 of them exhibit differences between the shader data generated and the data that exists in MS23 / ElDewrito.
 
-There are also 12 shaders which lack existing shader code by default, and thus are unabled to be compiled.
+There are also 12 shaders that lack existing shader code by default, and thus are unable to be compiled.
 
 Out of these 12 shaders, 10 are completely unknown, and thus do not currently have functional shader code.
 #
@@ -657,7 +657,7 @@ The solution for this is to add ```#ifdef``` functions to check if the shader be
 
 This should avoid the issue of an undefined vertex type being parsed into the vertex shader function.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1
 
 [debug.hlsl #L30](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/debug.hlsl#L30)
 ```
@@ -1046,7 +1046,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 The main issue with the pixel shader is that one of the ```#ifdef``` functions in the HLSL has been commented out.
 
-This causes the Xbox, or rather the Xenon specific function to execute instead of the PC function.
+This causes the Xbox, or rather the Xenon-specific function to execute instead of the PC function.
 
 Applying the following patches to the ```default_calc_blend``` function, which gets called on by the default pixel shader function, generates 1:1 pixel shader data.
 
@@ -1069,7 +1069,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 The main issue with the pixel shader is that one of the ```#ifdef``` functions in the HLSL has been commented out.
 
-This causes the Xbox, or rather the Xenon specific function to execute instead of the PC function.
+This causes the Xbox, or rather the Xenon-specific function to execute instead of the PC function.
 
 Applying the following patches to the ```default_calc_blend``` function, which gets called on by the default pixel shader function, generates 1:1 pixel shader data.
 
@@ -1092,7 +1092,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 The main issue with the pixel shader is that one of the ```#ifdef``` functions in the HLSL has been commented out.
 
-This causes the Xbox, or rather the Xenon specific function to execute instead of the PC function.
+This causes the Xbox, or rather the Xenon-specific function to execute instead of the PC function.
 
 Applying the following patches to the ```default_calc_blend``` function, which gets called on by the default pixel shader function, generates 1:1 pixel shader data.
 
@@ -1115,7 +1115,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 The main issue with the pixel shader is that one of the ```#ifdef``` functions in the HLSL has been commented out.
 
-This causes the Xbox, or rather the Xenon specific function to execute instead of the PC function.
+This causes the Xbox, or rather the Xenon-specific function to execute instead of the PC function.
 
 Applying the following patches to the ```default_calc_blend``` function, which gets called on by the default pixel shader function, generates 1:1 pixel shader data.
 
@@ -1160,13 +1160,13 @@ No modifications were required.
 ## implicit_hill
 This shader does not compile at all by default
 
-This shader is using an invalid vertex type.
+This shader uses an invalid vertex type.
 
-For some reason the compiler is unable to properly parse the vertex type ```implicit_vertex``` even though it should be able to in theory
+For some reason, the compiler is unable to properly parse the vertex type ```implicit_vertex``` even though it should be able to in theory
 
 The solution to this issue is to simply replace the vertex type with its base value in the generator, which is ```implicit```.
 
-Applying the following patches allows the shader to compile solves the issue of invalid vertex types
+Applying the following patches allows the shader to compile and solves the issue of invalid vertex types
 
 [implicit_hill.hlsl #L16](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/implicit_hill.hlsl#L16)
 ```
@@ -1177,7 +1177,7 @@ This shader also contains an undefined register.
 
 This is caused by a typo in the register declaration.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1
 
 [implicit_hill_registers.h #L20](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/implicit_hill_registers.h#L20)
 ```
@@ -1305,7 +1305,7 @@ The second issue has to do with the vertex shader function itself.
 
 The entire default vertex shader function has been commented out, and replaced with a new vertex shader function
 
-The solution in this case is to uncomment the unused default vertex function [default_vs](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/lens_flare.hlsl#L22) then comment out the second default vertex function.
+The solution, in this case, is to uncomment the unused default vertex function [default_vs](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/lens_flare.hlsl#L22) then comment out the second default vertex function.
 
 [lens_flare.hlsl #L59](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/lens_flare.hlsl#L59)
 ```
@@ -1470,7 +1470,7 @@ The solution for this is to add ```#ifdef``` functions to check if the shader be
 
 This should avoid the issue of an undefined vertex type being parsed into the vertex shader function.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1.
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1.
 
 [postprocess.fx #L28](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/postprocess.fx#L28)
 ```
@@ -1499,7 +1499,7 @@ There are still a few minor differences in the pixel shader data even after the 
 
 The main issue with the pixel shader data is that by default, one of the output variables is being defined using a dedicated function ```generate_emblem_pixel```.
 
-When comparing the diassembled data from MS23 / ElDewrito, the output variable isn't defined using a dedicated function but rather is parsed through the  ```sample2D``` function before being parsed through the ```convert_to_render_target``` function.
+When comparing the disassembled data from MS23 / ElDewrito, the output variable isn't defined using a dedicated function but rather is parsed through the  ```sample2D``` function before being parsed through the ```convert_to_render_target``` function.
 
 Applying the following patches to the default pixel shader function resolves this issue.
 
@@ -1531,7 +1531,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 The main issue with the pixel shader data is that by default, one of the output variables is being defined using a dedicated function ```generate_emblem_pixel```.
 
-When comparing the diassembled data from MS23 / ElDewrito, the output variable isn't defined using a dedicated function but rather is parsed through the  ```sample2D``` function before being parsed through the ```convert_to_render_target``` function.
+When comparing the disassembled data from MS23 / ElDewrito, the output variable isn't defined using a dedicated function but rather is parsed through the  ```sample2D``` function before being parsed through the ```convert_to_render_target``` function.
 
 Applying the following patches to the default pixel shader function resolves this issue.
 
@@ -1635,7 +1635,7 @@ There are issues with both the pixel shader data and the vertex shader data.
 
 The main issue with this shader as a whole has to do with one of the dependencies of the shader, and how it uses certain macros.
 
-Looking at the disassembled data from MS23 / ElDewrito, it appears to ignore the  ```POSTPROCESS_USE_CUSTOM_VERTEX_SHADER``` macro defined in [final_composite_base.hlsl](https://github.com/Beatthezombie/HaloShaderGenerator/blob/master/halo_online_shaders/final_composite_base.hlsl), where as every other shader which makes use of the same dependencies will make use of that macro.
+Looking at the disassembled data from MS23 / ElDewrito, it appears to ignore the  ```POSTPROCESS_USE_CUSTOM_VERTEX_SHADER``` macro defined in [final_composite_base.hlsl](https://github.com/Beatthezombie/HaloShaderGenerator/blob/master/halo_online_shaders/final_composite_base.hlsl), whereas every other shader which makes use of the same dependencies will make use of that macro.
 
 The fix for this is to add some extra ```#ifdef``` functions to tell the shader to ignore the ```POSTPROCESS_USE_CUSTOM_VERTEX_SHADER``` macro when it is compiling any screenshot combine shader.
 
@@ -1709,7 +1709,7 @@ Most of the issues are with the pixel shader data.
 
 The vertex shader data is 1:1, so no modifications were required.
 
-The only issue with the pixel shader data is that when compared to the diassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
+The only issue with the pixel shader data is that when compared to the disassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
 
 Apply the following patches resolves this issue, and generates 1:1 pixel shader data.
 
@@ -1726,7 +1726,7 @@ Most of the issues are with the pixel shader data.
 
 The vertex shader data is 1:1, so no modifications were required.
 
-The only issue with the pixel shader data is that when compared to the diassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
+The only issue with the pixel shader data is that when compared to the disassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
 
 Apply the following patches resolves this issue, and generates 1:1 pixel shader data.
 
@@ -1743,7 +1743,7 @@ Most of the issues are with the pixel shader data.
 
 The vertex shader data is 1:1, so no modifications were required.
 
-The only issue with the pixel shader data is that when compared to the diassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
+The only issue with the pixel shader data is that when compared to the disassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
 
 Apply the following patches resolves this issue, and generates 1:1 pixel shader data.
 
@@ -1760,7 +1760,7 @@ Most of the issues are with the pixel shader data.
 
 The vertex shader data is 1:1, so no modifications were required.
 
-The only issue with the pixel shader data is that when compared to the diassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
+The only issue with the pixel shader data is that when compared to the disassembled data from MS23 / ElDewrito, the ```FASTER_SHADOWS``` macro has been left undefined.
 
 Apply the following patches resolves this issue, and generates 1:1 pixel shader data.
 
@@ -1775,9 +1775,9 @@ This shader does not compile at all by default
 
 This is due to a missing include statement.
 
-This include contains all the register declarations, which is required by the compiler.
+This include statement contains all the register declarations, which is required by the compiler.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1.
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1.
 
 [shadow_geometry_registers.fx #L6](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/shadow_geometry_registers.fx#L6)
 ```
@@ -1793,7 +1793,7 @@ The disassembled pixel shader data for this shader also contains an extra instru
 
 This extra instruction corresponds to the ```ssr_color``` value in the ```accum_pixel``` struct, which in this instance is being set to 0 in the ```convert_to_render_target``` function.
 
-Another minor difference is that the ```convert_to_render_target``` takes the variable ```p_lighting_constant_0``` instead of the variable ```shadow_color``` in as an input. 
+Another minor difference is that the ```convert_to_render_target``` takes the variable ```p_lighting_constant_0``` instead of the variable ```shadow_color``` as an input. 
 
 This doesn't affect the functionality of the shader at all and is purely an issue of mismatched identifiers.
 
@@ -1819,7 +1819,7 @@ Most of the issues are with the vertex shader data, as while the pixel shader da
 
 This shader also has an extra vertex type, when compared to the default vertex types in the Halo 3 and ODST shader source. 
 
-Currently there is no accurate implementation for the vertex shader data.
+Currently, there is no accurate implementation for the vertex shader data.
 
 More research is required before 1:1 shader data can be generated.
 ##
@@ -1833,13 +1833,13 @@ No modifications were required.
 ## sky_dome_simple
 This shader does not compile at all by default
 
-This shader is using an invalid vertex type.
+This shader uses an invalid vertex type.
 
 For some reason, the shader is using ```sky``` as a vertex type instead of ```world```.
 
 The solution to this issue is to simply replace the vertex type with its proper equivalent value in the generator, which is ```world```
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1.
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1.
 
 [sky_dome_simple.hlsl #L13](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/sky_dome_simple.hlsl#L13)
 ```
@@ -1893,13 +1893,13 @@ s_interpolators default_vs(vertex_type IN)
 ## sniper_scope
 This shader does not compile at all by default
 
-This due to a variable not being properly defined.
+This is due to a variable not being properly defined.
 
-The ```stencil``` variable which is used to define one of the return variables doesn't get properly inititalized, due to missing PC ```#ifdef``` functions.
+The ```stencil``` variable which is used to define one of the return variables doesn't get properly initialized, due to missing PC ```#ifdef``` functions.
 
-The solution to this issue is to simple replace the ```stencil``` variable with zero, as the stencil variable is never properly defined not matter what macros get defined in the compiler.
+The solution to this issue is to simply replace the ```stencil``` variable with zero, as the stencil variable is never properly defined no matter what macros get defined in the compiler.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1.
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1.
 
 [sniper_scope.hlsl #L111](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/sniper_scope.hlsl#L111)
 ```
@@ -1957,7 +1957,7 @@ The vertex shader data is 1:1, so no modifications were required.
 
 There appear to be some minor issues regarding the order of certain instructions, as well as some of the constants.
 
-There is currently no implementation which can generate 1:1 pixel shader data.
+There is currently no implementation that can generate 1:1 pixel shader data.
 
 More research is required before 1:1 shader data can be generated.
 ##
@@ -1983,7 +1983,7 @@ The solution for this is to add ```#ifdef``` functions to check if the shader be
 
 This should avoid the issue of an undefined vertex type being parsed into the vertex shader function.
 
-Applying the following patches allows the shader to compile, and generates shader data that is almost 1:1.
+Applying the following patches allows the shader to compile, and generate shader data that is almost 1:1.
 
 [transparent.hlsl #L23](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/transparent.hlsl#L23)
 ```
@@ -2069,9 +2069,9 @@ return convert_to_render_target(float4(output_color, 1.0f), true, true
 ```
 
 ### Minor Note:
-Everything specified here has to do with fixes for underwater fog, which is specific to ElDewrito 0.7, and is not featured in any capacity in MS23.
+Everything specified here has to do with fixes for underwater fog, which is specific to ElDewrito 0.7 and is not featured in any capacity in MS23.
 
-There is an extra entry point which defines the updated undertwater fog functions.
+There is an extra entry point that defines the updated underwater fog functions.
 
 [water_ripple.hlsl #L8](https://github.com/Beatthezombie/HaloShaderGenerator/blob/3e9945db51dd27f30f99975b0a15cff3dba1fc4e/halo_online_shaders/water_ripple.hlsl#L8)
 ```
@@ -2239,7 +2239,7 @@ A more accurate pixel shader implementation exists in an older version of TagToo
 
 [pixl_vision_mode.hlsl](https://github.com/Beatthezombie/HaloShaderGenerator/blob/74c0aaf386299ac3c35143c73fd2708b669e59e7/HaloShaderGenerator/hlsl/explicit/pixl_vision_mode.hlsl)
 
-The vertex shader data generated using the files which exist in the ODST shader source do generate 1:1 data.
+The vertex shader data generated using the files that exist in the ODST shader source do generate 1:1 data.
 
 More research is required before 1:1 shader data can be generated.
 ##
