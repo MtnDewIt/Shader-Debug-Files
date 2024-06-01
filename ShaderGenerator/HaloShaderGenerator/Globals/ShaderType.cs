@@ -157,8 +157,8 @@ namespace HaloShaderGenerator.Globals
         custom_gamma_correct,
         pixel_copy,
         decorator_edit,
-        unknown_5B,
-        unknown_5C,
+        hdr_retrieve,
+        smirnov,
         fxaa,
         unknown_5E,
         sniper_scope_stencil_pc,
@@ -174,7 +174,7 @@ namespace HaloShaderGenerator.Globals
         unknown_69,
         unknown_6A,
         unknown_6B,
-        unknown_6C,
+        hud_camera_nightvision,
         unknown_6D
     }
 }
