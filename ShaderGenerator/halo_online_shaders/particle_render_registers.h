@@ -12,7 +12,7 @@
 #define k_ps_particle_render_depth_constants CONSTANT_NAME(201)
 #define k_vs_particle_render_occlusion_to_world CONSTANT_NAME(37)
 #define k_vs_particle_render_world_to_occlusion CONSTANT_NAME(40)	
-#define k_vs_particle_render_collision CONSTANT_NAME(15)   
+#define k_vs_particle_render_collision 15
 
 #elif DX_VERSION == 11
 
