@@ -91,9 +91,11 @@ s_contrail_render_vertex read_contrail_interpolators(s_contrail_interpolators IN
 #define _profile_type_max	3
 
 #include "contrail_strip.fx"
+#include "contrail_state.fx"
 
 #if DX_VERSION == 9
 PARAM_STRUCT(s_strip, g_strip);
+PARAM_STRUCT(s_overall_state, g_all_state);
 #endif
 
 // Take the index from the vertex input semantic and translate it into the actual lookup 
