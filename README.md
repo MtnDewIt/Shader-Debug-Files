@@ -2166,6 +2166,18 @@ No modifications were required.
 
 This is currently an unknown shader.
 
+Most of the issues are with the pixel shader data.
+
+The vertex shader data is 1:1 with the ```fxaa``` shader, so no modifications or custom implementations are required.
+
+The pixel shader data is almost 1:1 with the pixel data in the ```fxaa``` shader.
+
+The disassembled pixel shader data for this shader contains an extra texture sampler register ```alpha_sampler``` when compared against the ```fxaa``` shader.
+
+Name is currently unknown.
+
+```fxaa_alpha``` seems like a suitable name, as looking at the disassembled data, the order of instructions appears to be almost 1:1 with the existing ```fxaa``` implementation, with the only difference being the addition of the ```alpha_sampler``` texture sampler, and its supporting code.
+
 More research is required before 1:1 shader data can be generated.
 ##
 
@@ -2234,6 +2246,8 @@ Looking at the disassembled pixel shader data from MS23 / ElDewrito, the data is
 The only real similarities between the data are the registers.
 
 All other data is unknown.
+
+By default, the ```hud_camera_nightvision``` HLSL from the ODST shader source generates an empty pixel shader
 
 A more accurate pixel shader implementation exists in an older version of TagTool's shader source files: 
 
