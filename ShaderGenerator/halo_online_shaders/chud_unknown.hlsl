@@ -63,7 +63,8 @@ float4 build_subpixel_result(float2 texcoord)
 	bitmap_result= sample2D(basemap_sampler, texcoord);
 #endif
 	//float this_meter_value= 255.0*bitmap_result.b;
-	float this_meter_value= chud_scalar_output_EF.x*texcoord;
+	float reversed_texcoord= 1.0-texcoord;
+	float this_meter_value= chud_scalar_output_EF.x*reversed_texcoord;
 	float edge_meter_value= chud_scalar_output_ABCD.x;
 	float gradient_width= chud_scalar_output_ABCD.y;
 	float edge_to_end= chud_scalar_output_EF.x - edge_meter_value; 
