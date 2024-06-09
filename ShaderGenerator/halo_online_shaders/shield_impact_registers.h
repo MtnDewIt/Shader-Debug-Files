@@ -7,6 +7,17 @@
 #define CONSTANT_NAME(n) n
 #endif
 
+// MS23 pixel constants
+#define k_ps_shield_impact_impact0_color                CONSTANT_NAME(100)
+#define k_ps_shield_impact_plasma_offsets               CONSTANT_NAME(102)
+#define k_ps_shield_impact_edge_glow                    CONSTANT_NAME(103)
+#define k_ps_shield_impact_plasma_color                 CONSTANT_NAME(104)
+#define k_ps_shield_impact_plasma_edge_color            CONSTANT_NAME(105)
+#define k_ps_shield_impact_edge_scales                  CONSTANT_NAME(106)
+#define k_ps_shield_impact_edge_offsets                 CONSTANT_NAME(107)
+#define k_ps_shield_impact_plasma_scales                CONSTANT_NAME(108)
+#define k_ps_shield_impact_depth_fade_params            CONSTANT_NAME(109)
+
 #define k_vs_shield_impact_extrusion_distance 			CONSTANT_NAME(228)
 
 #define k_ps_shield_impact_bound_sphere 				CONSTANT_NAME(100)

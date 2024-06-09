@@ -34,6 +34,17 @@ PIXEL_CONSTANT(float3, shield_impact_color1, k_ps_shield_impact_color1)
 PIXEL_CONSTANT(float3, shield_impact_color2, k_ps_shield_impact_color2)
 PIXEL_CONSTANT(float3, shield_impact_ambient_color, k_ps_shield_impact_ambient_color)
 
+// MS23 pixel constants
+PIXEL_CONSTANT(float4, impact0_color, k_ps_shield_impact_impact0_color)
+PIXEL_CONSTANT(float4, plasma_offsets, k_ps_shield_impact_plasma_offsets)
+PIXEL_CONSTANT(float4, edge_glow, k_ps_shield_impact_edge_glow)
+PIXEL_CONSTANT(float4, plasma_color, k_ps_shield_impact_plasma_color)
+PIXEL_CONSTANT(float4, plasma_edge_color, k_ps_shield_impact_plasma_edge_color)
+PIXEL_CONSTANT(float4, edge_scales, k_ps_shield_impact_edge_scales)
+PIXEL_CONSTANT(float4, edge_offsets, k_ps_shield_impact_edge_offsets)
+PIXEL_CONSTANT(float4, plasma_scales, k_ps_shield_impact_plasma_scales)
+PIXEL_CONSTANT(float4, depth_fade_params, k_ps_shield_impact_depth_fade_params)
+
 #elif DX_VERSION == 11
 
 CBUFFER_BEGIN(ShieldImpactVS)
