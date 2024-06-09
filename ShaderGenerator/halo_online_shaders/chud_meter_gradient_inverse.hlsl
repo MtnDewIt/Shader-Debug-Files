@@ -19,26 +19,33 @@
 
 // ==== SHADER DOCUMENTATION
 // shader: chud_meter_gradient_inverse
+//
+// note: the 'meter value' for this shader is implicit, not defined 
+// in the texture! it's derived from the 'x' value of the texcoord,
+// if the bitmap sequence is it's own bitmap (not a sub-rectangle of 
+// a larger bitmap) then the right edge will have a meter value of '0'
+// and the left edge will have a meter value of 'meter max' which
+// is stored in [scalar output E]
 // 
 // ---- COLOR OUTPUTS
-// color output A= solid color
-// color output B= unused
-// color output C= unused
-// color output D= unused
+// color output A= primary color
+// color output B= secondary color
+// color output C= gradient color
+// color output D= empty color
 // 
 // ---- SCALAR OUTPUTS
-// scalar output A= unused
-// scalar output B= unused
-// scalar output C= unused
-// scalar output D= unused
-// scalar output E= unused
+// scalar output A= meter amount
+// scalar output B= gradient width
+// scalar output C= gradient alpha scale (>1 makes flash less opaque)
+// scalar output D= empty alpha scale (<1 makes empty more opaque)
+// scalar output E= meter max
 // scalar output F= unused
 
 // ---- BITMAP CHANNELS
 // A: alpha
 // R: unused
 // G: selects between primary (0) and secondary (255) color
-// B: highlight channel
+// B: unused
 
 chud_output default_vs(vertex_type IN)
 {
