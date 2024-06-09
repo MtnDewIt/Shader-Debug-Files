@@ -61,7 +61,7 @@ namespace HaloShaderGenerator.Globals
         chud_cortana_composite,
         chud_directional_damage_apply,
         chud_really_simple,
-        chud_unknown
+        chud_meter_gradient_inverse
     }
 
     public enum ExplicitShader

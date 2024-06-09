@@ -1,4 +1,4 @@
-#line 1 "source\rasterizer\hlsl\chud_unknown.hlsl"
+#line 1 "source\rasterizer\hlsl\chud_meter_gradient_inverse.hlsl"
 
 #define IGNORE_SKINNING_NODES
 
@@ -18,7 +18,7 @@
 //@generate chud_simple
 
 // ==== SHADER DOCUMENTATION
-// shader: chud_unknown
+// shader: chud_meter_gradient_inverse
 // 
 // ---- COLOR OUTPUTS
 // color output A= solid color
@@ -63,8 +63,8 @@ float4 build_subpixel_result(float2 texcoord)
 	bitmap_result= sample2D(basemap_sampler, texcoord);
 #endif
 	//float this_meter_value= 255.0*bitmap_result.b;
-	float reversed_texcoord= 1.0-texcoord;
-	float this_meter_value= chud_scalar_output_EF.x*reversed_texcoord;
+	float texcoord_inverse= 1.0-texcoord;
+	float this_meter_value= chud_scalar_output_EF.x*texcoord_inverse;
 	float edge_meter_value= chud_scalar_output_ABCD.x;
 	float gradient_width= chud_scalar_output_ABCD.y;
 	float edge_to_end= chud_scalar_output_EF.x - edge_meter_value; 

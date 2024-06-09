@@ -20,7 +20,7 @@ Out of the 26 chud shaders included by default within MS23 / ElDewrito, 25 of th
 
 Out of the 25 that do compile, 4 of them exhibit differences between the shader data generated and the data that exists in MS23 / ElDewrito.  
 
-One of the shaders will not compile by default, as this shader's functionality is unknown, and thus no shader source exists for it by default.  
+One of the shaders will not compile by default, as this shader is specific to Halo Online, and thus no shader source exists for it by default.  
 #
 
 ## chud_cortana_camera
@@ -120,6 +120,26 @@ Compiled shader data is 1:1.
 No modifications were required.
 ##
 
+## chud_meter_gradient_inverse
+No shader source exists by default for this shader.
+
+Most of the issues are with the pixel shader data.
+
+The vertex shader data uses the default vertex shader function from ```chud_meter_gradient```, which generates 1:1 vertex shader data, so no custom implementation was required.
+
+Looking at the disassembled pixel shader data from MS23 / ElDewrito, the data is fairly similar to the ```chud_meter_gradient``` shader.
+
+The only difference between the pixel data for this shader and the pixel data for ```chud_meter_gradient``` is that the texture coordinates are inverted before being parsed into the current meter value.
+
+By default, this shader is unknown and thus does not have a name.
+
+Given that the only difference between this shader and the ```chud_meter_gradient``` shader is that the texture coordinates get inverted, the name ```chud_meter_gradient_inverse``` seemed the most appropriate.
+
+The name does not affect the functionality of the shader and is purely for semantics, and maintaining consistency.
+
+This implementation generates 1:1 shader data.
+##
+
 ## chud_meter_radial_gradient
 Compiled shader data is 1:1.
 
@@ -196,20 +216,6 @@ No modifications were required.
 Compiled shader data is 1:1.
 
 No modifications were required.
-##
-
-## chud_unknown
-No shader source exists by default for this shader.
-
-Most of the issues are with the pixel shader data.
-
-The vertex shader data uses the default vertex shader function from ```chud_meter_gradient```, which generates 1:1 shader data, so no custom implementation was required.
-
-Looking at the disassembled pixel shader data from MS23 / ElDewrito, the data is fairly similar to the ```chud_meter_gradient``` shader.
-
-Currently, the code from the chud shader ```chud_meter_gradient``` is being used for a temporary implementation.
-
-More research is required before 1:1 shader data can be generated.
 ##
 
 &nbsp;    
