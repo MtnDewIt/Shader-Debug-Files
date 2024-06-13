@@ -1638,6 +1638,9 @@ struct sfx_distort_vsout
     float4 position		: VS_POS_OUTPUT;
     float4 texcoord		: TEXCOORD0;
     float1 distortion	: TEXCOORD1;
+#ifdef misc_attr_define
+    float4 misc			: TEXCOORD9;
+#endif
 };
 
 
