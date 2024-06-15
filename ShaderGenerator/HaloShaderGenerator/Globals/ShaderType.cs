@@ -174,7 +174,7 @@ namespace HaloShaderGenerator.Globals
         unknown_105,
         unknown_106,
         unknown_107,
-        hud_camera_nightvision,
+        unknown_108,
         unknown_109
     }
 }
