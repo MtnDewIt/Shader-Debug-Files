@@ -8,6 +8,9 @@
 #include "unknown_103_unknown_104_registers.fx"
 //@generate screen
 
+LOCAL_SAMPLER_2D(depthBuf, 0);
+LOCAL_SAMPLER_2D(normBuf, 1);
+
 screen_output default_vs(screen_output IN)
 {
 	screen_output OUT;

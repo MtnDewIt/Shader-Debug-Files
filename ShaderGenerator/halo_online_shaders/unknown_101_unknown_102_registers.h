@@ -10,6 +10,8 @@
 #define k_vs_ref_reflections_cam_vec_0          CONSTANT_NAME(240)
 #define k_vs_reg_uv_scale_offset                CONSTANT_NAME(241)
 
+#define k_ps_reg_blur_dir                       CONSTANT_NAME(3)
+
 #endif
 
 #endif

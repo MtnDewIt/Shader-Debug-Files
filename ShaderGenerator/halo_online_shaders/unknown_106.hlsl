@@ -5,7 +5,10 @@
 #include "hlsl_vertex_types.fx"
 #include "utilities.fx"
 #include "postprocess.fx"
+#include "unknown_101_unknown_102_registers.fx"
 //@generate screen
+
+LOCAL_SAMPLER_2D(color_sampler, 0);
 
 screen_output default_vs(screen_output IN)
 {
@@ -17,7 +20,7 @@ screen_output default_vs(screen_output IN)
 	return OUT;
 }
 
-float4 default_ps(screen_output IN) : SV_Target
+float4 default_ps(vertex_type IN) : SV_Target
 {
     return float4(1, 0, 0, 0);
 }

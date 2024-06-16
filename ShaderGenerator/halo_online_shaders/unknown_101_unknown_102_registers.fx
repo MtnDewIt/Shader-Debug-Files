@@ -10,6 +10,8 @@
 VERTEX_CONSTANT(float4, vs_ref_reflections_cam_vec_0, k_vs_ref_reflections_cam_vec_0);
 VERTEX_CONSTANT(float4, vs_reg_uv_scale_offset, k_vs_reg_uv_scale_offset);
 
+PIXEL_CONSTANT(float4, ps_reg_blur_dir, k_ps_reg_blur_dir);
+
 #endif
 
 #endif

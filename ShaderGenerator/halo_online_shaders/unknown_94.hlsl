@@ -22,9 +22,9 @@
 #elif DX_VERSION == 11
 #define FXAA_HLSL_5 1
 #endif
+//#define FXAA_USE_ALPHA_SAMPLER 1
 #define FXAA_QUALITY__PRESET 12
 //#define FXAA_GREEN_AS_LUMA 1
-//#define FXAA_USE_ALPHA_SAMPLER 1
 
 
 #define __fxaaQualitySubpix  0.25f

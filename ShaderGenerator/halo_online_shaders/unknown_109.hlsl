@@ -7,6 +7,9 @@
 #include "postprocess.fx"
 //@generate screen
 
+LOCAL_SAMPLER_2D(psNormalSampler, 0);
+LOCAL_SAMPLER_2D(psDepthSampler, 1);
+
 screen_output default_vs(screen_output IN)
 {
 	screen_output OUT;
@@ -17,7 +20,22 @@ screen_output default_vs(screen_output IN)
 	return OUT;
 }
 
-float4 default_ps(screen_output IN) : SV_Target
+float4 default_ps(vertex_type IN) : SV_Target
 {
-    return float4(1, 0, 0, 0);
+    float4 OUT;
+
+    float3 normal = sample2D(psNormalSampler, IN.texcoord).xyz;
+
+    float length = sqrt(dot(normal, normal));
+
+    normal /= length;
+
+    OUT.xy = normal.xy;
+
+    float depth = sample2D(psDepthSampler, IN.texcoord).x;
+
+    float2 constants = float2(1, 0);
+    OUT.zw = depth * constants.xy + constants.yx;
+
+    return OUT;
 }

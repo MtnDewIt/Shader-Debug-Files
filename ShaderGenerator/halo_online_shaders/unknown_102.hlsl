@@ -5,6 +5,10 @@
 #include "unknown_101_unknown_102_registers.fx"
 //@generate screen
 
+LOCAL_SAMPLER_2D(color_sampler, 0);
+LOCAL_SAMPLER_2D(gbuf_sampler, 1);
+LOCAL_SAMPLER_2D(depth_sampler, 2);
+
 struct unknown_102_output
 {
     float4 position : SV_POSITION;

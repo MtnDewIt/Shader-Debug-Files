@@ -7,6 +7,10 @@
 #include "postprocess.fx"
 //@generate screen
 
+LOCAL_SAMPLER_2D(ssaoBuf, 0);
+LOCAL_SAMPLER_2D(depthBuf, 1);
+LOCAL_SAMPLER_2D(depthHalfBuf, 2);
+
 screen_output default_vs(screen_output IN)
 {
 	screen_output OUT;
@@ -17,7 +21,7 @@ screen_output default_vs(screen_output IN)
 	return OUT;
 }
 
-float4 default_ps(screen_output IN) : SV_Target
+float4 default_ps(vertex_type IN) : SV_Target
 {
     return float4(1, 0, 0, 0);
 }
