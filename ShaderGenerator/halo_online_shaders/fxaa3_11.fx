@@ -736,6 +736,10 @@ FxaaFloat4 FxaaPixelShader(
     //     {___a} = luma in perceptual color space (not linear)
     FxaaTex tex,
     //
+    // Input alpha texture.
+#if (FXAA_USE_ALPHA_SAMPLER == 1)
+    FxaaTex tex_a,
+#endif
     // Only used on the optimized 360 version of FXAA Console.
     // For everything but 360, just use the same input here as for "tex".
     // For 360, same texture, just alias with a 2nd sampler.
@@ -935,7 +939,11 @@ FxaaFloat4 FxaaPixelShader(
         #if (FXAA_DISCARD == 1)
             FxaaDiscard;
         #else
-            return rgbyM;
+            #if (FXAA_USE_ALPHA_SAMPLER == 1)
+                return FxaaFloat4(FxaaTexTop(tex_a, posM).xyz, lumaM);
+            #else
+                return rgbyM;
+            #endif
         #endif
 /*--------------------------------------------------------------------------*/
     #if (FXAA_GATHER4_ALPHA == 0)
@@ -1233,7 +1241,11 @@ FxaaFloat4 FxaaPixelShader(
     #if (FXAA_DISCARD == 1)
         return FxaaTexTop(tex, posM);
     #else
-        return FxaaFloat4(FxaaTexTop(tex, posM).xyz, lumaM);
+        #if (FXAA_USE_ALPHA_SAMPLER == 1)
+            return FxaaFloat4(FxaaTexTop(tex, posM).xyz, FxaaTexTop(tex_a, posM).w);
+        #else
+            return FxaaFloat4(FxaaTexTop(tex, posM).xyz, lumaM);
+        #endif
     #endif
 }
 /*==========================================================================*/

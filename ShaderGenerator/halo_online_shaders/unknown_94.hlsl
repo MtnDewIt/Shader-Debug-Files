@@ -22,7 +22,7 @@
 #elif DX_VERSION == 11
 #define FXAA_HLSL_5 1
 #endif
-//#define FXAA_USE_ALPHA_SAMPLER 1
+#define FXAA_USE_ALPHA_SAMPLER 1
 #define FXAA_QUALITY__PRESET 12
 //#define FXAA_GREEN_AS_LUMA 1
 
@@ -90,14 +90,16 @@ float4 default_ps(
    //return tex2D(source_sampler, input.uv.xy);
    //return FxaaPixelShader(source_sampler, input);
    
-   //return FxaaPixelShader(input.uv.xy,
-   //   source_sampler,
-   //   alpha_sampler,
-   //   pixel_size.xy,
-   //   __fxaaQualitySubpix,
-   //   __fxaaQualityEdgeThreshold,
-   //   __fxaaQualityEdgeThresholdMin
-   //);
+   return FxaaPixelShader(input.uv.xy,
+      source_sampler,
+#if (FXAA_USE_ALPHA_SAMPLER == 1)
+      alpha_sampler,
+#endif
+      pixel_size.xy,
+      __fxaaQualitySubpix,
+      __fxaaQualityEdgeThreshold,
+      __fxaaQualityEdgeThresholdMin
+   );
 
    return float4(1, 0, 0, 0);
 }
