@@ -22,20 +22,16 @@ screen_output default_vs(screen_output IN)
 
 float4 default_ps(vertex_type IN) : SV_Target
 {
+    float4 normal_sample = sample2D(psNormalSampler, IN.texcoord);
+    float4 depth_sample = sample2D(psDepthSampler, IN.texcoord);
+
+    normal_sample.xyz /= sqrt(dot(normal_sample.xyz, normal_sample.xyz));
+
     float4 OUT;
 
-    float3 normal = sample2D(psNormalSampler, IN.texcoord).xyz;
-
-    float length = sqrt(dot(normal, normal));
-
-    normal /= length;
-
-    OUT.xy = normal.xy;
-
-    float depth = sample2D(psDepthSampler, IN.texcoord).x;
-
-    float2 constants = float2(1, 0);
-    OUT.zw = depth * constants.xy + constants.yx;
+    OUT.xy = normal_sample.xy;
+    OUT.z = depth_sample.x;
+    OUT.w = 1.0f;
 
     return OUT;
 }
