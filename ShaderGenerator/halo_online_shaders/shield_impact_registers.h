@@ -7,6 +7,12 @@
 #define CONSTANT_NAME(n) n
 #endif
 
+// MS23 vertex constants
+#define k_vs_shield_impact_vertex_params                CONSTANT_NAME(228)
+#define k_vs_shield_impact_vertex_params2               CONSTANT_NAME(229)
+#define k_vs_shield_impact_impact0_params               CONSTANT_NAME(230)
+#define k_vs_shield_impact_impact1_params               CONSTANT_NAME(231)
+
 // MS23 pixel constants
 #define k_ps_shield_impact_impact0_color                CONSTANT_NAME(100)
 #define k_ps_shield_impact_plasma_offsets               CONSTANT_NAME(102)

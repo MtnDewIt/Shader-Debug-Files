@@ -11,6 +11,12 @@ Copyright (c) Microsoft Corporation, 2007. all rights reserved.
 
 // ensure that these don't conflict with oneshot/persist registers
 
+// MS23 vertex constants
+VERTEX_CONSTANT(float4, vertex_params, k_vs_shield_impact_vertex_params)
+VERTEX_CONSTANT(float4, vertex_params2, k_vs_shield_impact_vertex_params2)				
+VERTEX_CONSTANT(float4, impact0_params, k_vs_shield_impact_impact0_params)
+VERTEX_CONSTANT(float4, impact1_params, k_vs_shield_impact_impact1_params)
+
 VERTEX_CONSTANT(float, extrusion_distance, k_vs_shield_impact_extrusion_distance)
 
 // xyz = center, w = radius
