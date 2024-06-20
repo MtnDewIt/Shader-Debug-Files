@@ -922,14 +922,19 @@ FxaaFloat4 FxaaPixelShader(
         FxaaFloat lumaW = FxaaLuma(FxaaTexOff(tex, posM, FxaaInt2(-1, 0), fxaaQualityRcpFrame.xy));
     #endif
 /*--------------------------------------------------------------------------*/
-    FxaaFloat maxSM = max(lumaS, lumaM);
-    FxaaFloat minSM = min(lumaS, lumaM);
-    FxaaFloat maxESM = max(lumaE, maxSM);
-    FxaaFloat minESM = min(lumaE, minSM);
-    FxaaFloat maxWN = max(lumaN, lumaW);
-    FxaaFloat minWN = min(lumaN, lumaW);
-    FxaaFloat rangeMax = max(maxWN, maxESM);
-    FxaaFloat rangeMin = min(minWN, minESM);
+    #if (FXAA_USE_ALPHA_SAMPLER == 1)
+        FxaaFloat rangeMax = max(max(lumaS, lumaW), max(lumaE, max(lumaN, lumaM)));
+        FxaaFloat rangeMin = min(min(lumaS, lumaW), min(lumaE, min(lumaN, lumaM)));
+    #else
+        FxaaFloat maxSM = max(lumaS, lumaM);
+        FxaaFloat minSM = min(lumaS, lumaM);
+        FxaaFloat maxESM = max(lumaE, maxSM);
+        FxaaFloat minESM = min(lumaE, minSM);
+        FxaaFloat maxWN = max(lumaN, lumaW);
+        FxaaFloat minWN = min(lumaN, lumaW);
+        FxaaFloat rangeMax = max(maxWN, maxESM);
+        FxaaFloat rangeMin = min(minWN, minESM);
+    #endif
     FxaaFloat rangeMaxScaled = rangeMax * fxaaQualityEdgeThreshold;
     FxaaFloat range = rangeMax - rangeMin;
     FxaaFloat rangeMaxClamped = max(fxaaQualityEdgeThresholdMin, rangeMaxScaled);
