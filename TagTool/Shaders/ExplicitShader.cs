@@ -110,7 +110,7 @@
         unknown_105,
         unknown_106,
         unknown_107,
-        unknown_108,
+        hud_camera_nightvision,
         unknown_109
     }
 }

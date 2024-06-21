@@ -5,7 +5,7 @@
 
 #if DX_VERSION == 9
 
-#include "unknown_108_registers.h"
+#include "hud_camera_nightvision_registers.h"
 
 PIXEL_CONSTANT(float4, falloff, k_ps_hud_camera_nightvision_falloff)
 PIXEL_CONSTANT(float4x4, screen_to_world, k_ps_hud_camera_nightvision_screen_to_world)

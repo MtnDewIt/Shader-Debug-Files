@@ -3,7 +3,7 @@
 #include "hlsl_vertex_types.fx"
 #include "utilities.fx"
 #include "postprocess.fx"
-#include "unknown_108_registers.fx"
+#include "hud_camera_nightvision_registers.fx"
 //@generate screen
 
 LOCAL_SAMPLER_2D(depth_sampler, 0);
