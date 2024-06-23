@@ -78,16 +78,28 @@ namespace TagTool.Commands.Shaders
                     gpix = cache.Deserialize<GlobalCacheFilePixelShaders>(stream, cache.TagCache.FindFirstInGroup("gpix"));
 
                 Dictionary<string, CachedTag> shaderTypes = new Dictionary<string, CachedTag>();
+                Dictionary<string, CachedTag> ms30ShaderTypes = new Dictionary<string, CachedTag>();
 
                 foreach (var tag in cache.TagCache.NonNull())
                 {
                     if (tag.Name == null || tag.Name == "" || tag.Group.Tag != "rmdf")
                         continue;
-                    if (tag.Name.StartsWith("ms30\\")) // Since we have a complete 0.6 tag list, the cache version check is somewhat redundant
-                        continue; // ignore ms30 in ms23, disassemble from ms30 directly instead
+                    if (tag.Name.StartsWith("ms30\\"))
+                        continue;
                     var pieces = tag.Name.Split('\\');
 
                     shaderTypes[pieces[pieces.Length - 1]] = tag;
+                }
+
+                foreach (var tag in cache.TagCache.NonNull())
+                {
+                    if (tag.Name == null || tag.Name == "" || tag.Group.Tag != "rmdf")
+                        continue;
+                    if (!tag.Name.StartsWith("ms30\\"))
+                        continue;
+                    var pieces = tag.Name.Split('\\');
+
+                    ms30ShaderTypes[pieces[pieces.Length - 1]] = tag;
                 }
 
                 foreach (var shaderType in shaderTypes.Keys)
@@ -127,6 +139,160 @@ namespace TagTool.Commands.Shaders
                             }
 
                             foreach (var index in rmt2Tag.Name.Split('\\')[2].Remove(0, 1).Split('_'))
+                                CurrentOptionIndices.Add(Convert.ToByte(index));
+
+                            var pixl = cache.Deserialize<PixelShader>(stream, CurrentRmt2.PixelShader);
+
+                            Directory.CreateDirectory(cache.Version.ToString() + "\\" + tagName);
+
+                            foreach (var entry in Enum.GetValues(entryPointEnum))
+                            {
+                                CurrentEntryPointIndex = GetEntryPointIndex(entry, cache.Version);
+
+                                if (CurrentEntryPointIndex < pixl.EntryPointShaders.Count)
+                                {
+                                    var entryShader = pixl.EntryPointShaders[CurrentEntryPointIndex].Offset;
+
+                                    if (pixl.EntryPointShaders[CurrentEntryPointIndex].Count != 0)
+                                    {
+                                        string entryName = entry.ToString().ToLower() + ".pixel_shader";
+                                        string pixelShaderFilename = Path.Combine(tagName, entryName);
+
+                                        DisassembleShader(pixl, entryShader, pixelShaderFilename, cache, stream, pixl.Shaders[entryShader].GlobalCachePixelShaderIndex != -1 ? gpix : null);
+                                    }
+                                }
+                            }
+
+                            CurrentEntryPointIndex = -1;
+                            CurrentOptionIndices.Clear();
+                            CurrentRmt2 = null;
+                        }
+                    }
+
+                    // glps
+                    Directory.CreateDirectory(cache.Version.ToString() + "\\" + glpsTagName);
+                    foreach (var entry in Enum.GetValues(entryPointEnum))
+                    {
+                        CurrentEntryPointIndex = GetEntryPointIndex(entry, cache.Version);
+
+                        if (CurrentEntryPointIndex < glps.EntryPoints.Count)
+                        {
+                            var entryShader = glps.EntryPoints[CurrentEntryPointIndex].DefaultCompiledShaderIndex;
+                            if (entryShader != -1)
+                            {
+                                string entryName = entry.ToString().ToLower() + ".shared_pixel_shader";
+                                string pixelShaderFilename = Path.Combine(glpsTagName, entryName);
+
+                                DisassembleShader(glps, entryShader, pixelShaderFilename, cache, stream, glps.Shaders[entryShader].GlobalCachePixelShaderIndex != -1 ? gpix : null);
+                            }
+                            else if (glps.EntryPoints[CurrentEntryPointIndex].CategoryDependency.Count > 0)
+                            {
+                                foreach (var option in glps.EntryPoints[CurrentEntryPointIndex].CategoryDependency)
+                                {
+                                    var methodIndex = option.DefinitionCategoryIndex;
+                                    for (int i = 0; i < option.OptionDependency.Count; i++)
+                                    {
+                                        var optionIndex = i;
+                                        string glpsFilename = entry.ToString().ToLower() + $"_{methodIndex}_{optionIndex}" + ".shared_pixel_shader";
+                                        glpsFilename = Path.Combine(glpsTagName, glpsFilename);
+                                        DisassembleShader(glps, option.OptionDependency[i].CompiledShaderIndex, glpsFilename, cache, stream, glps.Shaders[option.OptionDependency[i].CompiledShaderIndex].GlobalCachePixelShaderIndex != -1 ? gpix : null);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    CurrentEntryPointIndex = -1;
+
+                    // glvs
+                    foreach (VertexType vert in Enum.GetValues(typeof(VertexType)))
+                    {
+                        if ((int)vert < glvs.VertexTypes.Count)
+                        {
+                            var vertexFormat = glvs.VertexTypes[(int)vert];
+                            var dirName = Path.Combine(glvsTagName, vert.ToString().ToLower());
+                            foreach (var entry in Enum.GetValues(entryPointEnum))
+                            {
+                                CurrentEntryPointIndex = GetEntryPointIndex(entry, cache.Version);
+
+                                if (CurrentEntryPointIndex < vertexFormat.EntryPoints.Count)
+                                {
+                                    var entryShader = vertexFormat.EntryPoints[CurrentEntryPointIndex].ShaderIndex;
+                                    if (entryShader != -1)
+                                    {
+                                        Directory.CreateDirectory(cache.Version.ToString() + "\\" + dirName);
+                                        string entryName = entry.ToString().ToLower() + ".shared_vertex_shader";
+                                        string vertexShaderFileName = Path.Combine(dirName, entryName);
+
+                                        DisassembleShader(glvs, entryShader, vertexShaderFileName, cache, stream, null);
+                                    }
+                                    else
+                                    {
+                                        for (int i = 0; i < vertexFormat.EntryPoints[CurrentEntryPointIndex].CategoryDependency.Count; i++)
+                                        {
+                                            var catDep = vertexFormat.EntryPoints[CurrentEntryPointIndex].CategoryDependency[i];
+                                            for (int j = 0; j < catDep.OptionDependency.Count; j++)
+                                            {
+                                                var opDep = catDep.OptionDependency[j];
+                                                entryShader = opDep.CompiledShaderIndex;
+
+                                                if (entryShader != -1)
+                                                {
+                                                    Directory.CreateDirectory(cache.Version.ToString() + "\\" + dirName);
+                                                    string entryName = entry.ToString().ToLower() + $"_catg{i}_i{j}.shared_vertex_shader";
+                                                    string vertexShaderFileName = Path.Combine(dirName, entryName);
+
+                                                    DisassembleShader(glvs, entryShader, vertexShaderFileName, cache, stream, null);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    CurrentEntryPointIndex = -1;
+                    CurrentRmdf = null;
+                }
+
+                foreach (var shaderType in ms30ShaderTypes.Keys)
+                {
+                    CurrentRmdf = cache.Deserialize<RenderMethodDefinition>(stream, ms30ShaderTypes[shaderType]);
+
+                    CachedTag glvsTag = CurrentRmdf.GlobalVertexShader;
+                    CachedTag glpsTag = CurrentRmdf.GlobalPixelShader;
+
+                    if (glvsTag == null || glpsTag == null)
+                    {
+                        new TagToolWarning($"Cache \"{cache.DisplayName}\" has invalid shader type \"{shaderType}\"");
+                        continue;
+                    }
+
+                    var glvsTagName = glvsTag.Name;
+                    var glpsTagName = glpsTag.Name;
+
+                    var glvs = cache.Deserialize<GlobalVertexShader>(stream, glvsTag);
+                    var glps = cache.Deserialize<GlobalPixelShader>(stream, glpsTag);
+
+                    foreach (var tag in cache.TagCache.NonNull())
+                    {
+                        if (tag.IsInGroup("rmt2") && tag.Name.StartsWith($"ms30\\shaders\\{shaderType}_templates"))
+                        {
+                            // disassemble specified shaders related to rmt2
+                            var tagName = tag.Name;
+                            var rmt2Tag = cache.TagCache.GetTag(tagName, "rmt2");
+
+                            CurrentRmt2 = cache.Deserialize<RenderMethodTemplate>(stream, rmt2Tag);
+
+                            if (CurrentRmt2.PixelShader == null)
+                            {
+                                new TagToolError(CommandError.CustomError, "Template pixel shader was null");
+                                CurrentRmt2 = null;
+                                continue;
+                            }
+
+                            foreach (var index in rmt2Tag.Name.Split('\\')[3].Remove(0, 1).Split('_'))
                                 CurrentOptionIndices.Add(Convert.ToByte(index));
 
                             var pixl = cache.Deserialize<PixelShader>(stream, CurrentRmt2.PixelShader);
