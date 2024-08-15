@@ -11,7 +11,8 @@
 #define k_ps_cubemap_forward 		CONSTANT_NAME(1)
 #define k_ps_cubemap_up 			CONSTANT_NAME(2)
 #define k_ps_cubemap_left 			CONSTANT_NAME(3)
-#define k_ps_cubemap_param 			CONSTANT_NAME(4)
+#define k_ps_cubemap_scale 			CONSTANT_NAME(4)
+#define k_ps_cubemap_delta 			CONSTANT_NAME(4)
 
 #elif DX_VERSION == 11
 
