@@ -1,5 +1,9 @@
 #line 2 "source\rasterizer\hlsl\shadow_geometry.hlsl"
 
+#ifdef EXPLICIT_COMPILER
+#define SSR_ENABLE
+#endif
+
 #include "global.fx"
 #include "hlsl_constant_mapping.fx"
 #include "deform.fx"

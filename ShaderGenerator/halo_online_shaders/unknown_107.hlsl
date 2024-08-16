@@ -1,4 +1,8 @@
 
+#ifdef EXPLICIT_COMPILER
+#define SSR_ENABLE
+#endif
+
 #define POSTPROCESS_USE_CUSTOM_VERTEX_SHADER
 
 #include "global.fx"

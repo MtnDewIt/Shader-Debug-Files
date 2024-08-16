@@ -98,19 +98,6 @@ namespace HaloShaderGenerator
             macros.Add(ShaderGeneratorBase.CreateMacro("disable_register_reorder", "1"));
             macros.Add(ShaderGeneratorBase.CreateMacro("EXPLICIT_COMPILER", "1"));
 
-            // While this technically goes unused in most cases, having SSR_ENABLE defined generates 1:1 shaders
-            switch (entryPoint)
-            {
-                case ShaderStage.Default:
-                case ShaderStage.Shadow_Apply:
-                case ShaderStage.Lightmap_Debug_Mode:
-                    macros.Add(ShaderGeneratorBase.CreateMacro("SSR_ENABLE", "1"));
-                    break;
-                default:
-                    macros.Add(ShaderGeneratorBase.CreateMacro("SSR_ENABLE", "0"));
-                    break;
-            }
-
             if (applyFixes)
                 macros.Add(ShaderGeneratorBase.CreateMacro("APPLY_FIXES", "1"));
         }

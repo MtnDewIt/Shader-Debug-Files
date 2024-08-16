@@ -1,5 +1,9 @@
 #line 2 "source\rasterizer\hlsl\downsample_4x4_bloom_DOF.hlsl"
 
+#ifdef EXPLICIT_COMPILER
+#define SSR_ENABLE
+#endif
+
 #include "global.fx"
 #include "hlsl_vertex_types.fx"
 #include "utilities.fx"

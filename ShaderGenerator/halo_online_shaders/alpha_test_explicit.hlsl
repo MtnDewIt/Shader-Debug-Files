@@ -1,5 +1,9 @@
 #line 1 "source\rasterizer\hlsl\alpha_test.hlsl"
 
+#ifdef EXPLICIT_COMPILER
+#define SSR_ENABLE
+#endif
+
 #include "global.fx"
 #include "hlsl_constant_mapping.fx"
 #include "hlsl_vertex_types.fx"
