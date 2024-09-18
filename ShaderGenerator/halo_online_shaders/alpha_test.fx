@@ -17,7 +17,8 @@ void calc_alpha_test_on_ps(
 	in float2 texcoord,
 	out float output_alpha)
 {
-	float alpha= sample2D(alpha_test_map, transform_texcoord(texcoord, alpha_test_map_xform)).a;
+	float4 base= sample2D(alpha_test_map, transform_texcoord(texcoord, alpha_test_map_xform));
+	float alpha= base.a;
 	output_alpha= alpha;
 
 #if ENTRY_POINT(entry_point) == ENTRY_POINT_shadow_generate
@@ -25,6 +26,7 @@ void calc_alpha_test_on_ps(
 	clip(alpha-0.5f);			// always on for shadow
 
 #else
+    if(base.r == 1.0 && base.g == 0.0 && base.b == 1.0 && base.a > 0.72 && base.a < 0.73) { discard; }
 	
 	#ifdef APPLY_FIXES
 		clip(alpha-0.5f); // always on
