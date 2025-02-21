@@ -36,6 +36,7 @@ material_model // Halo 3 & ODST & Reach
     foliage // Halo 3 & ODST & Reach
     none // Halo 3 & ODST & Reach
     custom_specular // ODST & Reach
+    two_lobe_phong_reach // ED
 
 environment_mapping // Halo 3 & ODST & Reach
     none // Halo 3 & ODST & Reach

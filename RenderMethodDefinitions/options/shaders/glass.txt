@@ -11,7 +11,7 @@ bump_mapping // Reach
     detail_wrinkle // Reach
 
 material_model // Reach
-    two_lobe_phong // Reach
+    two_lobe_phong_reach // Reach
 
 environment_mapping // Reach
     none // Reach
