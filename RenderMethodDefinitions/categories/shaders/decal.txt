@@ -1,0 +1,8 @@
+albedo // Halo 3 & ODST & Reach
+blend_mode // Halo 3 & ODST & Reach
+render_pass // Halo 3 & ODST & Reach
+specular // Halo 3 & ODST & Reach
+bump_mapping // Halo 3 & ODST & Reach
+tinting // Halo 3 & ODST & Reach
+parallax // Reach
+interier // Reach

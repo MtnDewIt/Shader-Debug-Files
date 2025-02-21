@@ -1,0 +1,20 @@
+albedo // Halo 3 & ODST & Reach
+    default // Halo 3 & ODST & Reach
+    simple // Reach
+
+alpha_test // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    simple // Halo 3 & ODST
+    from_albedo_alpha // Reach
+    from_texture // Reach
+
+material_model // Halo 3 & ODST & Reach
+    default // Halo 3 & ODST
+    flat // Reach
+    specular // Reach
+    translucent // Reach
+
+wetness // Reach
+    simple // Reach
+    proof // Reach
+

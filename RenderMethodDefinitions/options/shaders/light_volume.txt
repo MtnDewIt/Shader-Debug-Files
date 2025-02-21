@@ -1,0 +1,26 @@
+albedo // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST & Reach
+    circular // Reach
+
+blend_mode // Halo 3 & ODST & Reach
+    opaque // Halo 3 & ODST & Reach
+    additive // Halo 3 & ODST & Reach
+    multiply // Halo 3 & ODST & Reach
+    alpha_blend // Halo 3 & ODST & Reach
+    double_multiply // Halo 3 & ODST & Reach
+    maximum // Halo 3 & ODST & Reach
+    multiply_add // Halo 3 & ODST & Reach
+    add_src_times_dstalpha // Halo 3 & ODST & Reach
+    add_src_times_srcalpha // Halo 3 & ODST & Reach
+    inv_alpha_blend // Halo 3 & ODST & Reach
+    pre_multiplied_alpha // Halo 3 & ODST & Reach
+
+fog // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    on // Halo 3 & ODST & Reach
+
+depth_fade // Reach
+    off // Reach
+    on // Reach
+    biased // Reach
+

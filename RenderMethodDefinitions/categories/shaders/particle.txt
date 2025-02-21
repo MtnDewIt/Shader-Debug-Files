@@ -1,0 +1,11 @@
+albedo // Halo 3 & ODST & Reach
+blend_mode // Halo 3 & ODST & Reach
+specialized_rendering // Halo 3 & ODST & Reach
+lighting // Halo 3 & ODST & Reach
+render_targets // Halo 3 & ODST
+depth_fade // Halo 3 & ODST & Reach
+black_point // Halo 3 & ODST & Reach
+fog // Halo 3 & ODST & Reach
+frame_blend // Halo 3 & ODST & Reach
+self_illumination // Halo 3 & ODST & Reach
+warp // Reach

@@ -1,0 +1,9 @@
+albedo // Halo 3 & ODST & Reach
+self_illumination // Halo 3 & ODST & Reach
+blend_mode // Halo 3 & ODST & Reach
+misc // Halo 3 & ODST & Reach
+warp // Halo 3 & ODST & Reach
+overlay // Halo 3 & ODST & Reach
+edge_fade // Halo 3 & ODST & Reach
+distortion // Halo 3
+soft_fade // Halo 3

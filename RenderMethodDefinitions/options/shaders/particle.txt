@@ -1,0 +1,68 @@
+albedo // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST
+    diffuse_plus_billboard_alpha // Halo 3 & ODST
+    palettized // Halo 3 & ODST
+    palettized_plus_billboard_alpha // Halo 3 & ODST
+    diffuse_plus_sprite_alpha // Halo 3 & ODST
+    palettized_plus_sprite_alpha // Halo 3 & ODST
+    diffuse_modulated // ODST
+    palettized_glow // ODST
+    palettized_plasma // ODST
+    palettized_2d_plasma // Reach
+
+blend_mode // Halo 3 & ODST & Reach
+    opaque // Halo 3 & ODST & Reach
+    additive // Halo 3 & ODST & Reach
+    multiply // Halo 3 & ODST & Reach
+    alpha_blend // Halo 3 & ODST & Reach
+    double_multiply // Halo 3 & ODST & Reach
+    maximum // Halo 3 & ODST & Reach
+    multiply_add // Halo 3 & ODST & Reach
+    add_src_times_dstalpha // Halo 3 & ODST & Reach
+    add_src_times_srcalpha // Halo 3 & ODST & Reach
+    inv_alpha_blend // Halo 3 & ODST & Reach
+    pre_multiplied_alpha // Halo 3 & ODST & Reach
+
+specialized_rendering // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    distortion // Halo 3 & ODST & Reach
+    distortion_expensive // Halo 3 & ODST & Reach
+    distortion_diffuse // Halo 3
+    distortion_expensive_diffuse // Halo 3
+
+lighting // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    per_pixel_ravi_order_3 // Halo 3 & ODST
+    per_vertex_ravi_order_0 // Halo 3 & ODST
+    per_pixel_smooth // Reach
+    per_vertex_ambient // Reach
+    smoke_lighting // Reach
+
+render_targets // Halo 3 & ODST
+    ldr_and_hdr // Halo 3 & ODST
+    ldr_only // Halo 3 & ODST
+
+depth_fade // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    on // Halo 3 & ODST & Reach
+    palette_shift // ED
+
+black_point // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    on // Halo 3 & ODST & Reach
+
+fog // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    on // Halo 3 & ODST & Reach
+
+frame_blend // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    on // Halo 3 & ODST & Reach
+
+self_illumination // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    constant_color // Halo 3 & ODST & Reach
+
+warp // Reach
+    none // Reach
+    sphere // Reach

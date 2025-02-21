@@ -1,0 +1,48 @@
+blending // Halo 3 & ODST & Reach
+    morph // Halo 3 & ODST & Reach
+    dynamic_morph // Halo 3 & ODST & Reach
+    distance_blend_base // Reach
+
+environment_map // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    per_pixel // Halo 3 & ODST & Reach
+    dynamic // Halo 3 & ODST & Reach
+    dynamic_reach // ED
+
+material_0 // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST & Reach
+    diffuse_plus_specular // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    diffuse_only_plus_self_illum // Halo 3
+    diffuse_plus_specular_plus_self_illum // Halo 3
+    diffuse_plus_specular_plus_heightmap // Halo 3
+    diffuse_plus_two_detail // Halo 3
+    diffuse_plus_specular_plus_up_vector_plus_heightmap // Halo 3
+
+material_1 // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST & Reach
+    diffuse_plus_specular // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    diffuse_only_plus_self_illum // Halo 3
+    diffuse_plus_specular_plus_self_illum // Halo 3
+    diffuse_plus_specular_plus_heightmap // Halo 3
+    diffuse_plus_specular_plus_up_vector_plus_heightmap // Halo 3
+
+material_2 // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST & Reach
+    diffuse_plus_specular // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    diffuse_only_plus_self_illum // Halo 3
+    diffuse_plus_specular_plus_self_illum // Halo 3
+
+material_3 // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    diffuse_only_(four_material_shaders_disable_detail_bump) // Halo 3 & ODST & Reach
+    diffuse_plus_specular_(four_material_shaders_disable_detail_bump) // Halo 3 & ODST & Reach
+
+wetness // Reach
+    default // Reach
+    proof // Reach
+    flood // Reach
+    ripples // Reach
+

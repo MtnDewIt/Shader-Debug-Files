@@ -1,0 +1,4 @@
+albedo // Halo 3 & ODST & Reach
+blend_mode // Halo 3 & ODST & Reach
+black_point // Halo 3 & ODST & Reach
+fog // Halo 3 & ODST & Reach

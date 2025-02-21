@@ -1,0 +1,58 @@
+albedo // Halo 3 & ODST & Reach
+    diffuse_only // Halo 3 & ODST & Reach
+    palettized // Halo 3 & ODST & Reach
+    palettized_plus_alpha // Halo 3 & ODST & Reach
+    diffuse_plus_alpha // Halo 3 & ODST & Reach
+    emblem_change_color // Halo 3 & ODST & Reach
+    change_color // Halo 3 & ODST & Reach
+    diffuse_plus_alpha_mask // Halo 3 & ODST & Reach
+    palettized_plus_alpha_mask // Halo 3 & ODST & Reach
+    vector_alpha // Halo 3 & ODST & Reach
+    vector_alpha_drop_shadow // Halo 3 & ODST & Reach
+    patchy_emblem // Reach
+
+blend_mode // Halo 3 & ODST & Reach
+    opaque // Halo 3 & ODST & Reach
+    additive // Halo 3 & ODST & Reach
+    multiply // Halo 3 & ODST & Reach
+    alpha_blend // Halo 3 & ODST & Reach
+    double_multiply // Halo 3 & ODST & Reach
+    maximum // Halo 3 & ODST & Reach
+    multiply_add // Halo 3 & ODST & Reach
+    add_src_times_dstalpha // Halo 3 & ODST & Reach
+    add_src_times_srcalpha // Halo 3 & ODST & Reach
+    inv_alpha_blend // Halo 3 & ODST & Reach
+    pre_multiplied_alpha // Halo 3 & ODST & Reach
+
+render_pass // Halo 3 & ODST & Reach
+    pre_lighting // Halo 3 & ODST & Reach
+    post_lighting // Halo 3 & ODST & Reach
+    transparent // Halo 3
+
+specular // Halo 3 & ODST & Reach
+    leave // Halo 3 & ODST & Reach
+    modulate // Halo 3 & ODST & Reach
+
+bump_mapping // Halo 3 & ODST & Reach
+    leave // Halo 3 & ODST & Reach
+    standard // Halo 3 & ODST & Reach
+    standard_mask // Halo 3 & ODST & Reach
+
+tinting // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    unmodulated // Halo 3 & ODST & Reach
+    partially_modulated // Halo 3 & ODST & Reach
+    fully_modulated // Halo 3 & ODST & Reach
+    
+parallax // Reach
+    off // Reach
+    simple // Reach
+    sphere // Reach
+
+interier // Reach
+    off // Reach
+    simple // Reach
+    floor // Reach
+    hole // Reach
+    box // Reach
+

@@ -1,0 +1,11 @@
+albedo // Halo 3 & ODST & Reach
+bump_mapping // Halo 3 & ODST & Reach
+alpha_test // Halo 3 & ODST & Reach
+specular_mask // Halo 3 & ODST & Reach
+material_model // Halo 3 & ODST & Reach
+environment_mapping // Halo 3 & ODST & Reach
+self_illumination // Halo 3 & ODST & Reach
+blend_mode // Halo 3 & ODST & Reach
+parallax // Halo 3 & ODST & Reach
+misc // Halo 3 & ODST & Reach
+wetness // Reach

@@ -1,0 +1,32 @@
+albedo // Reach
+    map // Reach
+
+bump_mapping // Reach
+    off // Reach
+    standard // Reach
+    detail // Reach
+    detail_blend // Reach
+    three_detail_blend // Reach
+    standard_wrinkle // Reach
+    detail_wrinkle // Reach
+
+material_model // Reach
+    two_lobe_phong // Reach
+
+environment_mapping // Reach
+    none // Reach
+    per_pixel // Reach
+    dynamic // Reach
+    from_flat_texture // Reach
+
+wetness // Reach
+    simple // Reach
+    flood // Reach
+
+alpha_blend_source // Reach
+    from_albedo_alpha_without_fresnel // Reach
+    from_albedo_alpha // Reach
+    from_opacity_map_alpha // Reach
+    from_opacity_map_rgb // Reach
+    from_opacity_map_alpha_and_albedo_alpha // Reach
+

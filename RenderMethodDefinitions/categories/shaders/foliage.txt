@@ -1,0 +1,4 @@
+albedo // Halo 3 & ODST & Reach
+alpha_test // Halo 3 & ODST & Reach
+material_model // Halo 3 & ODST & Reach
+wetness // Reach

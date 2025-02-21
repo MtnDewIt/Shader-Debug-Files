@@ -1,0 +1,69 @@
+albedo // Halo 3 & ODST & Reach
+    default // Halo 3 & ODST & Reach
+    detail_blend // Halo 3 & ODST & Reach
+    constant_color // Halo 3 & ODST & Reach
+    two_change_color // Halo 3 & ODST & Reach
+    four_change_color // Halo 3 & ODST & Reach
+    three_detail_blend // Halo 3 & ODST & Reach
+    two_detail_overlay // Halo 3 & ODST & Reach
+    two_detail // Halo 3 & ODST & Reach
+    color_mask // Halo 3 & ODST & Reach
+    two_detail_black_point // Halo 3 & ODST & Reach
+
+self_illumination // Halo 3 & ODST & Reach
+    off // Halo 3 & ODST & Reach
+    simple // Halo 3 & ODST & Reach
+    3_channel_self_illum // Halo 3 & ODST & Reach
+    plasma // Halo 3 & ODST & Reach
+    from_diffuse // Halo 3 & ODST & Reach
+    illum_detail // Halo 3 & ODST & Reach
+    meter // Halo 3 & ODST & Reach
+    self_illum_times_diffuse // Halo 3 & ODST & Reach
+    multilayer_additive // Halo 3 & ODST & Reach
+    scope_blur // Halo 3 & ODST & Reach
+    ml_add_four_change_color // Halo 3
+    ml_add_five_change_color // Halo 3
+    plasma_wide_and_sharp_five_change_color // Halo 3
+    self_illum_holograms // Halo 3
+    palettized_plasma // ODST & Reach
+    palettized_plasma_change_color // Reach
+    palettized_depth_fade // Reach
+
+blend_mode // Halo 3 & ODST & Reach
+    opaque // Halo 3 & ODST & Reach
+    additive // Halo 3 & ODST & Reach
+    multiply // Halo 3 & ODST & Reach
+    alpha_blend // Halo 3 & ODST & Reach
+    double_multiply // Halo 3 & ODST & Reach
+
+misc // Halo 3 & ODST & Reach
+    first_person_never // Halo 3 & ODST & Reach
+    first_person_sometimes // Halo 3 & ODST & Reach
+    first_person_always // Halo 3 & ODST & Reach
+    first_person_never_w/rotating_bitmaps // Halo 3 & ODST & Reach
+    always_calc_albedo // ED
+
+warp // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    from_texture // Halo 3 & ODST & Reach
+    parallax_simple // Halo 3 & ODST & Reach
+
+overlay // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    additive // Halo 3 & ODST & Reach
+    additive_detail // Halo 3 & ODST & Reach
+    multiply // Halo 3 & ODST & Reach
+    multiply_and_additive_detail // Halo 3 & ODST & Reach
+
+edge_fade // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    simple // Halo 3 & ODST & Reach
+
+distortion // Halo 3
+    off // Halo 3
+    on // Halo 3
+
+soft_fade // Halo 3
+    off // Halo 3
+    on // Halo 3
+

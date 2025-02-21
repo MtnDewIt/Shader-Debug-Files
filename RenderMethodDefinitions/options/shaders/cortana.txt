@@ -1,0 +1,30 @@
+albedo // Halo 3
+    default // Halo 3
+
+bump_mapping // Halo 3
+    standard // Halo 3
+
+alpha_test // Halo 3
+    none // Halo 3
+    simple // Halo 3
+
+material_model // Halo 3
+    cook_torrance // Halo 3
+
+environment_mapping // Halo 3
+    none // Halo 3
+    per_pixel // Halo 3
+    dynamic // Halo 3
+
+warp // Halo 3
+    default // Halo 3
+
+lighting // Halo 3
+    default // Halo 3
+
+scanlines // Halo 3
+    default // Halo 3
+
+transparency // Halo 3
+    default // Halo 3
+

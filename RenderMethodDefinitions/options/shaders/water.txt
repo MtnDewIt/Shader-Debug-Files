@@ -1,0 +1,47 @@
+waveshape // Halo 3 & ODST & Reach
+    default // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    bump // Halo 3 & ODST & Reach
+
+watercolor // Halo 3 & ODST & Reach
+    pure // Halo 3 & ODST & Reach
+    texture // Halo 3 & ODST & Reach
+
+reflection // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    static // Halo 3 & ODST & Reach
+    dynamic // Halo 3 & ODST & Reach
+    static_ssr // Halo 3
+
+refraction // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    dynamic // Halo 3 & ODST & Reach
+
+bankalpha // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    depth // Halo 3 & ODST
+    paint // Halo 3 & ODST & Reach
+    from_shape_texture_alpha // Reach
+
+appearance // Halo 3 & ODST & Reach
+    default // Halo 3 & ODST & Reach
+
+global_shape // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    paint // Halo 3 & ODST & Reach
+    depth // Halo 3 & ODST
+
+foam // Halo 3 & ODST & Reach
+    none // Halo 3 & ODST & Reach
+    auto // Halo 3 & ODST & Reach
+    paint // Halo 3 & ODST & Reach
+    both // Halo 3 & ODST & Reach
+
+detail // Reach
+    none // Reach
+    repeat // Reach
+    
+reach_compatibility // ED
+    disabled // ED
+    enabled // ED
+    enabled_detail_repeat // ED

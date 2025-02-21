@@ -1,0 +1,10 @@
+waveshape // Halo 3 & ODST & Reach
+watercolor // Halo 3 & ODST & Reach
+reflection // Halo 3 & ODST & Reach
+refraction // Halo 3 & ODST & Reach
+bankalpha // Halo 3 & ODST & Reach
+appearance // Halo 3 & ODST & Reach
+global_shape // Halo 3 & ODST & Reach
+foam // Halo 3 & ODST & Reach
+detail // Reach
+reach_compatibility // ED

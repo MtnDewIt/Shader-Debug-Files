@@ -1,0 +1,31 @@
+warp // ODST & Reach
+    none // ODST & Reach
+    pixel_space // ODST & Reach
+    screen_space // ODST & Reach
+
+base // ODST & Reach
+    single_screen_space // ODST & Reach
+    single_pixel_space // ODST & Reach
+    normal_map_edge_shade // Reach
+    single_target_space // Reach
+    normal_map_edge_stencil // Reach
+
+overlay_a // ODST & Reach
+    none // ODST & Reach
+    tint_add_color // ODST & Reach
+    detail_screen_space // ODST & Reach
+    detail_pixel_space // ODST & Reach
+    detail_masked_screen_space // ODST & Reach
+    palette_lookup // Reach
+
+overlay_b // ODST & Reach
+    none // ODST & Reach
+    tint_add_color // ODST & Reach
+
+blend_mode // ODST & Reach
+    opaque // ODST & Reach
+    additive // ODST & Reach
+    multiply // ODST & Reach
+    alpha_blend // ODST & Reach
+    double_multiply // ODST & Reach
+    pre_multiplied_alpha // ODST & Reach
