@@ -1,7 +1,7 @@
-D:\ElDewrito\0.7.1\maps\tags.dat
-SetVariable reachmaps "F:\Bruh\HRMaps"
-SetVariable workingdir "C:\Users\Harry Ricketts\Documents\GitHub\MtnDewIt\Shader-Debug-Files\ShaderUpdates"
-SetVariable modsfolder "D:\ElDewrito\0.7.1\mods"
+< ElDewrito maps folder >
+SetVariable reachmaps < Halo Reach 360 maps folder >
+SetVariable workingdir < Respository folder >
+SetVariable modsfolder < ElDewrito mods folder >
 
 CreateModPackage 1 Large
 Shader Updates
