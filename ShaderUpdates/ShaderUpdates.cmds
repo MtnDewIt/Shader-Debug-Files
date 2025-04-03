@@ -1,0 +1,74 @@
+< ElDewrito maps folder >
+SetVariable reachmaps < Halo Reach 360 maps folder >
+SetVariable workingdir < Respository folder >
+SetVariable modsfolder < ElDewrito mods folder >
+
+CreateModPackage 1 Large
+Shader Updates
+Shader Updates
+MtnDewIt
+0.1
+Multiplayer Campaign FireFight MainMenu
+
+// Rename Base Cache Tags
+
+OpenCacheFile reachmaps\m45.map
+PortTag rasterizer\rain\rain_noise_boundary.bitmap
+PortTag shaders\default_bitmaps\bitmaps\color_white_alpha_black.bitmap
+Exit
+
+// Maybe move to using loose tags 
+GenerateBitmap shaders\default_bitmaps\bitmaps\checker_board workingdir\bitmaps\checker_board.dds
+GenerateBitmap shaders\default_bitmaps\bitmaps\color_blue workingdir\bitmaps\color_blue.dds
+
+// This is an array type bitmap whhich currently has issues when trying to import
+##GenerateBitmap linear rasterizer\water\static_wave\static_wave_slope_water workingdir\bitmaps\static_wave_slope_water
+DuplicateTag rasterizer\water\wave_test1\wave_test1_slope_water.bitmap rasterizer\water\static_wave\static_wave_slope_water
+
+EditTag *.rasg
+AddBlockElements defaultbitmaps
+SetField defaultbitmaps[*].bitmap rasterizer\diffuse_power_specular\diffuse_power.bitmap
+SaveTagChanges
+Exit
+
+GenerateRmdf Beam true true
+GenerateRmdf Black true true
+GenerateRmdf Contrail true true 
+GenerateRmdf Cortana true true 
+GenerateRmdf Custom true true           
+GenerateRmdf Decal true true    
+GenerateRmdf Foliage true false
+GenerateRmdf Fur true true
+GenerateRmdf FurStencil true true  
+GenerateRmdf Glass true true
+GenerateRmdf Halogram true true
+GenerateRmdf LightVolume true true
+GenerateRmdf Mux true true
+GenerateRmdf Particle true true
+GenerateRmdf Screen true true
+GenerateRmdf Shader true true
+GenerateRmdf Terrain true true 
+GenerateRmdf Water true true           
+GenerateRmdf ZOnly true true 
+
+RecompileShaders beam
+RecompileShaders black
+RecompileShaders contrail
+RecompileShaders cortana
+RecompileShaders custom
+RecompileShaders decal
+RecompileShaders foliage
+RecompileShaders fur
+RecompileShaders fur_stencil
+RecompileShaders glass
+RecompileShaders halogram
+RecompileShaders light_volume
+RecompileShaders mux
+RecompileShaders particle
+RecompileShaders screen
+RecompileShaders shader
+RecompileShaders terrain
+RecompileShaders water
+RecompileShaders zonly
+
+SaveModPackage modsfolder
