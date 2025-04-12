@@ -10954,8 +10954,8 @@ GenerateShader explicit beam_update
 GenerateShader explicit blend3
 GenerateShader explicit bloom_add_alpha1
 GenerateShader explicit bloom_curve
-GenerateShader explicit blur_11_horizontal
-GenerateShader explicit blur_11_vertical
+GenerateShader explicit blur_11_horizontal false
+GenerateShader explicit blur_11_vertical false
 GenerateShader explicit bspline_resample
 GenerateShader explicit chud_overlay_blend
 GenerateShader explicit contrail_spawn
@@ -11003,7 +11003,7 @@ GenerateShader explicit gradient false
 GenerateShader explicit hdr_retrieve
 ##GenerateShader explicit hud_camera_nightvision
 GenerateShader explicit implicit_hill
-GenerateShader explicit kernel_5
+GenerateShader explicit kernel_5 false
 GenerateShader explicit legacy_hud_bitmap
 GenerateShader explicit legacy_meter
 GenerateShader explicit lens_flare
