@@ -8,7 +8,7 @@ Shader Updates
 Shader Updates
 MtnDewIt
 0.1
-Multiplayer Campaign FireFight MainMenu
+Multiplayer Campaign FireFight MainMenu Character
 
 EditTag ms30\shaders\halogram.render_method_definition
 SaveTagChanges
@@ -913,6 +913,15 @@ Exit
 EditTag ui\chud\globals.chud_globals_definition
 SaveTagChanges
 Exit
+##EditTag objects\eldewrito\reforge\shaders\glass.render_method_template
+##SaveTagChanges
+##Exit
+##EditTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.pixel_shader
+##SaveTagChanges
+##Exit
+##EditTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.vertex_shader
+##SaveTagChanges
+##Exit
 
 EditTag fx\decals\blood_splats\brute_blood_medium.decal_system
 SaveTagChanges
@@ -10859,6 +10868,9 @@ NameTag shaders\shader_options\illum_ml_add_four_change_color.render_method_opti
 NameTag shaders\shader_options\illum_palettized_depth_fade.render_method_option shaders\screen_options\illum_palettized_depth_fade
 NameTag shaders\shader_options\material_car_paint.render_method_option shaders\shader_options\material_car_paint_option
 NameTag shaders\shader_options\sfx_distort.render_method_option shaders\shader_options\distort_on
+##NameTag objects\eldewrito\reforge\shaders\glass.render_method_template shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
+##NameTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.pixel_shader shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
+##NameTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.vertex_shader shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
 SaveTagNames
 
 OpenCacheFile reachmaps\m45.map
