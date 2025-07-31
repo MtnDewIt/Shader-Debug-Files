@@ -1,11 +1,12 @@
-< ElDewrito maps folder >
-SetVariable reachmaps < Halo Reach 360 maps folder >
-SetVariable workingdir < Respository folder >
-SetVariable modsfolder < ElDewrito mods folder >
+D:\ElDewrito\0.7.1\maps\tags.dat
+
+SetVariable reachmaps "F:\Builds\Gen3\HaloReach"
+SetVariable workingdir "C:\Users\Harry Ricketts\Documents\GitHub\MtnDewIt\Shader-Debug-Files\ShaderUpdates"
+SetVariable modsfolder "D:\ElDewrito\0.7.1\mods"
 
 CreateModPackage 1 Large
-Shader Updates
-Shader Updates
+Shader Debug Test
+Shader Debug Test
 MtnDewIt
 0.1
 Multiplayer Campaign FireFight MainMenu Character
@@ -10879,8 +10880,8 @@ PortTag shaders\default_bitmaps\bitmaps\color_white_alpha_black.bitmap
 Exit
 
 // Maybe move to using loose tags 
-GenerateBitmap shaders\default_bitmaps\bitmaps\checker_board workingdir\bitmaps\checker_board.dds
-GenerateBitmap shaders\default_bitmaps\bitmaps\color_blue workingdir\bitmaps\color_blue.dds
+GenerateBitmap shaders\default_bitmaps\bitmaps\checker_board "workingdir\bitmaps\checker_board.dds"
+GenerateBitmap shaders\default_bitmaps\bitmaps\color_blue "workingdir\bitmaps\color_blue.dds"
 
 // This is an array type bitmap which currently has issues when trying to import
 DuplicateTag rasterizer\water\wave_test1\wave_test1_slope_water.bitmap rasterizer\water\static_wave\static_wave_slope_water
@@ -10891,25 +10892,25 @@ SetField defaultbitmaps[*].bitmap rasterizer\diffuse_power_specular\diffuse_powe
 SaveTagChanges
 Exit
 
-GenerateRmdf Beam true true
-GenerateRmdf Black true true
-GenerateRmdf Contrail true true
-GenerateRmdf Cortana true true
-GenerateRmdf Custom true true
-GenerateRmdf Decal true true
-GenerateRmdf Foliage true false
-GenerateRmdf Fur true true
-GenerateRmdf FurStencil true true
-GenerateRmdf Glass true true
-GenerateRmdf Halogram true true
-GenerateRmdf LightVolume true true
-GenerateRmdf Mux true true
-GenerateRmdf Particle true true
-GenerateRmdf Screen true true
-GenerateRmdf Shader true true
-GenerateRmdf Terrain true true
-GenerateRmdf Water true true
-GenerateRmdf ZOnly true true
+GenerateRmdf Beam
+GenerateRmdf Black
+GenerateRmdf Contrail
+GenerateRmdf Cortana
+GenerateRmdf Custom
+GenerateRmdf Decal
+GenerateRmdf Foliage NoFixes
+GenerateRmdf Fur
+GenerateRmdf FurStencil
+GenerateRmdf Glass
+GenerateRmdf Halogram
+GenerateRmdf LightVolume
+GenerateRmdf Mux
+GenerateRmdf Particle
+GenerateRmdf Screen
+GenerateRmdf Shader
+GenerateRmdf Terrain
+GenerateRmdf Water
+GenerateRmdf ZOnly
 
 RecompileShaders beam
 RecompileShaders black
@@ -11068,4 +11069,39 @@ GenerateShader explicit water_ripple
 GenerateShader explicit write_depth
 GenerateShader explicit yuv_to_rgb
 
-SaveModPackage modsfolder\ShaderUpdates.pak
+opencachefile "D:\SteamLibrary\steamapps\common\H3EK\maps\art_test_forerunner.map"
+porttag !UpdateMapFiles *.scnr
+porttag objects\temp\oli\mkvi_infinite\mkvi_infinite.render_model
+exit
+
+edittag levels\reference\art_test_forerunner\art_test_forerunner.scenario
+setfield maptype multiplayer
+setfield mapid 7005
+setfield campaignid -1
+savetagchanges
+exit
+
+edittag objects\characters\masterchief\masterchief.model
+setfield rendermodel objects\temp\oli\mkvi_infinite\mkvi_infinite.render_model
+savetagchanges
+exit
+
+opencachefile "reachmaps\cex_headlong.map"
+setportingoption reachlightmapcache "workingdir\caches\lightmapcache"
+porttag *.scnr
+exit
+
+opencachefile "reachmaps\ff20_courtyard.map"
+setportingoption reachlightmapcache "workingdir\caches\lightmapcache"
+porttag *.scnr
+exit
+
+edittag levels\firefight\ff20_courtyard\ff20_courtyard.scenario
+setfield maptype multiplayer
+setfield campaignid -1
+savetagchanges
+exit
+
+updatemapfiles
+
+savemodpackage
