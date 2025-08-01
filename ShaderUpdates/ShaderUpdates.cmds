@@ -10933,7 +10933,7 @@ RecompileShaders water
 RecompileShaders zonly
 
 GenerateShader chud chud_cortana_camera
-GenerateShader chud chud_cortana_composite false
+GenerateShader chud chud_cortana_composite nofixes
 GenerateShader chud chud_cortana_offscreen
 GenerateShader chud chud_cortana_screen
 GenerateShader chud chud_cortana_screen_final
@@ -10948,14 +10948,14 @@ GenerateShader chud chud_meter_double_gradient
 GenerateShader chud chud_meter_gradient
 GenerateShader chud chud_meter_gradient_inverse
 GenerateShader chud chud_meter_radial_gradient
-GenerateShader chud chud_meter_shield false
+GenerateShader chud chud_meter_shield nofixes
 GenerateShader chud chud_meter_single_color
 GenerateShader chud chud_navpoint
 GenerateShader chud chud_really_simple
 GenerateShader chud chud_sensor
-GenerateShader chud chud_simple false
+GenerateShader chud chud_simple nofixes
 GenerateShader chud chud_solid
-GenerateShader chud chud_text_simple false 
+GenerateShader chud chud_text_simple nofixes 
 GenerateShader chud chud_texture_cam
 GenerateShader chud chud_turbulence
 
@@ -10967,8 +10967,8 @@ GenerateShader explicit beam_update
 GenerateShader explicit blend3
 GenerateShader explicit bloom_add_alpha1
 GenerateShader explicit bloom_curve
-GenerateShader explicit blur_11_horizontal false
-GenerateShader explicit blur_11_vertical false
+GenerateShader explicit blur_11_horizontal nofixes
+GenerateShader explicit blur_11_vertical nofixes
 GenerateShader explicit bspline_resample
 GenerateShader explicit chud_overlay_blend
 GenerateShader explicit contrail_spawn
@@ -10993,7 +10993,7 @@ GenerateShader explicit decorator_sun
 GenerateShader explicit decorator_wavy
 GenerateShader explicit displacement
 GenerateShader explicit displacement_motion_blur
-GenerateShader explicit double_gradient false
+GenerateShader explicit double_gradient nofixes
 GenerateShader explicit downsample_2x2
 GenerateShader explicit downsample_4x4_block
 GenerateShader explicit downsample_4x4_block_bloom
@@ -11012,11 +11012,11 @@ GenerateShader explicit final_composite_dof
 GenerateShader explicit final_composite_zoom
 GenerateShader explicit fxaa
 GenerateShader explicit gamma_correct
-GenerateShader explicit gradient false
+GenerateShader explicit gradient nofixes
 GenerateShader explicit hdr_retrieve
 ##GenerateShader explicit hud_camera_nightvision
 GenerateShader explicit implicit_hill
-GenerateShader explicit kernel_5 false
+GenerateShader explicit kernel_5 nofixes
 GenerateShader explicit legacy_hud_bitmap
 GenerateShader explicit legacy_meter
 GenerateShader explicit lens_flare
@@ -11025,15 +11025,15 @@ GenerateShader explicit lightshafts
 GenerateShader explicit overhead_map_geometry
 GenerateShader explicit particle_spawn
 GenerateShader explicit particle_update
-GenerateShader explicit patchy_fog false
+GenerateShader explicit patchy_fog nofixes
 GenerateShader explicit pixel_copy
 GenerateShader explicit player_emblem_screen
 GenerateShader explicit player_emblem_world
 GenerateShader explicit radial_blur
 GenerateShader explicit restore_ldr_hdr_depth
 GenerateShader explicit rotate_2d
-GenerateShader explicit screenshot_combine false
-GenerateShader explicit screenshot_combine_dof false
+GenerateShader explicit screenshot_combine nofixes
+GenerateShader explicit screenshot_combine_dof nofixes
 GenerateShader explicit screenshot_display
 GenerateShader explicit screenshot_memexport
 GenerateShader explicit shadow_apply
@@ -11087,6 +11087,11 @@ savetagchanges
 exit
 
 opencachefile "reachmaps\cex_headlong.map"
+setportingoption reachlightmapcache "workingdir\caches\lightmapcache"
+porttag *.scnr
+exit
+
+opencachefile "reachmaps\35_island.map"
 setportingoption reachlightmapcache "workingdir\caches\lightmapcache"
 porttag *.scnr
 exit
