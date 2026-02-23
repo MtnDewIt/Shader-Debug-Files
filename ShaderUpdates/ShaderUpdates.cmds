@@ -15,4 +15,6 @@ RunCommands "workingdir\RenderMethodUpdates.cmds"
 RunCommands "workingdir\ExplicitShaderUpdates.cmds"
 RunCommands "workingdir\ChudShaderUpdates.cmds"
 
+INSERT PORTING COMMANDS HERE
+
 savemodpackage
