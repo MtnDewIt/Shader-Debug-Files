@@ -1,0 +1,197 @@
+EditTag rasterizer\shaders\chud_cortana_camera.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_camera.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_composite.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_composite.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_offscreen.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_offscreen.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_screen.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_screen.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_screen_final.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_cortana_screen_final.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_crosshair.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_crosshair.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_directional_damage.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_directional_damage.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_directional_damage_apply.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_directional_damage_apply.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_double_gradient.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_double_gradient.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_emblem.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_emblem.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_medal.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_medal.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_chapter.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_chapter.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_gradient.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_gradient.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_shield.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_shield.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_single_color.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_meter_single_color.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_navpoint.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_navpoint.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_radial_gradient.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_radial_gradient.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_really_simple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_really_simple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_sensor.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_sensor.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_simple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_simple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_solid.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_solid.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_text_simple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_text_simple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_texture_cam.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_texture_cam.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_turbulence.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_turbulence.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_unknown.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_unknown.vertex_shader
+SaveTagChanges
+Exit
+EditTag objects\characters\elite\mp_elite\chud\globals.chud_globals_definition
+SaveTagChanges
+Exit
+EditTag ui\chud\globals.chud_globals_definition
+SaveTagChanges
+Exit
+
+NameTag rasterizer\shaders\chud_double_gradient.pixel_shader rasterizer\shaders\chud_meter_double_gradient
+NameTag rasterizer\shaders\chud_double_gradient.vertex_shader rasterizer\shaders\chud_meter_double_gradient
+NameTag rasterizer\shaders\chud_radial_gradient.pixel_shader rasterizer\shaders\chud_meter_radial_gradient
+NameTag rasterizer\shaders\chud_radial_gradient.vertex_shader rasterizer\shaders\chud_meter_radial_gradient
+NameTag rasterizer\shaders\chud_unknown.pixel_shader rasterizer\shaders\chud_meter_gradient_inverse
+NameTag rasterizer\shaders\chud_unknown.vertex_shader rasterizer\shaders\chud_meter_gradient_inverse
+SaveTagNames
+
+GenerateShader chud chud_cortana_camera
+GenerateShader chud chud_cortana_composite nofixes
+GenerateShader chud chud_cortana_offscreen
+GenerateShader chud chud_cortana_screen
+GenerateShader chud chud_cortana_screen_final
+GenerateShader chud chud_crosshair
+GenerateShader chud chud_directional_damage
+GenerateShader chud chud_directional_damage_apply
+GenerateShader chud chud_emblem
+GenerateShader chud chud_medal
+GenerateShader chud chud_meter
+GenerateShader chud chud_meter_chapter
+GenerateShader chud chud_meter_double_gradient
+GenerateShader chud chud_meter_gradient
+GenerateShader chud chud_meter_gradient_inverse
+GenerateShader chud chud_meter_radial_gradient
+GenerateShader chud chud_meter_shield nofixes
+GenerateShader chud chud_meter_single_color
+GenerateShader chud chud_navpoint
+GenerateShader chud chud_really_simple
+GenerateShader chud chud_sensor
+GenerateShader chud chud_simple nofixes
+GenerateShader chud chud_solid
+GenerateShader chud chud_text_simple nofixes 
+GenerateShader chud chud_texture_cam
+GenerateShader chud chud_turbulence

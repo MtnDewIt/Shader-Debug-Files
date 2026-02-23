@@ -1,0 +1,813 @@
+EditTag rasterizer\shaders\add.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\add.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\add_downsampled.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\add_downsampled.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\alpha_test_explicit.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\alpha_test_explicit.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\apply_color_matrix.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\apply_color_matrix.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\beam_update.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\beam_update.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blend3.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blend3.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bloom_add_alpha1.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bloom_add_alpha1.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bloom_curve.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bloom_curve.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blur_11_horizontal.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blur_11_horizontal.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blur_11_vertical.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\blur_11_vertical.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bspline_resample.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\bspline_resample.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_overlay_blend.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\chud_overlay_blend.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\contrail_spawn.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\contrail_spawn.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\contrail_update.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\contrail_update.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy_rgbe_to_rgb.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy_rgbe_to_rgb.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy_surface.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\copy_surface.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\crop.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\crop.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_clamp.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_clamp.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_divide.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_divide.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_phi_blur.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_phi_blur.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_theta_blur.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\cubemap_theta_blur.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\custom_gamma_correct.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\custom_gamma_correct.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\debug.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\debug.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\debug2d.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\debug2d.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_default.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_default.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_no_wind.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_no_wind.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_shaded.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_shaded.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_static.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_static.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_sun.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_sun.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_wavy.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\decorator_wavy.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\displacement.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\displacement.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\displacement_motion_blur.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\displacement_motion_blur.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\double_gradient.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\double_gradient.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_2x2.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_2x2.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom_ldr.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom_ldr.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom_new.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_block_bloom_new.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_bloom_dof.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_bloom_dof.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian_bloom.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian_bloom.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian_bloom_ldr.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsample_4x4_gaussian_bloom_ldr.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsize_2x_target.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsize_2x_target.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsize_2x_to_bloom.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\downsize_2x_to_bloom.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\exposure_downsample.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\exposure_downsample.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_debug.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_debug.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_dof.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_dof.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_zoom.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\final_composite_zoom.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\fxaa.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\fxaa.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\gamma_correct.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\gamma_correct.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\gradient.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\gradient.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_mask.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_mask.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_nightvision.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_nightvision.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_nightvision_screenshot.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_nightvision_screenshot.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_pda.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\hud_camera_pda.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\implicit_hill.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\implicit_hill.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\kernel_5.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\kernel_5.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\legacy_hud_bitmap.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\legacy_hud_bitmap.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\legacy_meter.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\legacy_meter.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\lens_flare.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\lens_flare.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\light_volume_update.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\light_volume_update.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\overhead_map_geometry.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\overhead_map_geometry.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\particle_spawn.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\particle_spawn.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\particle_update.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\particle_update.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\patchy_fog.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\patchy_fog.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\pixel_copy.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\pixel_copy.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\player_emblem_screen.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\player_emblem_screen.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\player_emblem_world.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\player_emblem_world.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\restore_ldr_hdr_depth.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\restore_ldr_hdr_depth.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\rotate_2d.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\rotate_2d.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screen_space_reflection.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screen_space_reflection.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screen_space_reflection_blur.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screen_space_reflection_blur.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_combine.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_combine.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_combine_dof.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_combine_dof.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_display.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_display.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_memexport.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\screenshot_memexport.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_bilinear.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_bilinear.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_fancy.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_fancy.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_faster.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_faster.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_point.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_apply_point.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_geometry.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shadow_geometry.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shield_impact.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shield_impact.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shield_meter.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\shield_meter.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\simple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\simple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\sky_dome_simple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\sky_dome_simple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\sniper_scope.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\sniper_scope.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\spike_blur_horizontal.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\spike_blur_horizontal.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\spike_blur_vertical.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\spike_blur_vertical.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\stencil_stipple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\stencil_stipple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\transparent.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\transparent.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_100.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_100.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_102.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_102.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_103.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_103.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_104.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_104.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_105.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_105.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_107.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_107.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_109.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_109.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_96.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_96.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_97.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_97.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_98.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_98.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_99.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\unknown_default_shader_99.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\update_persistence.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\update_persistence.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\vision_mode.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\vision_mode.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\water_ripple.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\water_ripple.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\write_depth.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\write_depth.vertex_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\yuv_to_rgb.pixel_shader
+SaveTagChanges
+Exit
+EditTag rasterizer\shaders\yuv_to_rgb.vertex_shader
+SaveTagChanges
+Exit
+EditTag globals\rasterizer_globals.rasterizer_globals
+SaveTagChanges
+Exit
+
+NameTag rasterizer\shaders\hud_camera.pixel_shader rasterizer\shaders\decorator_edit
+NameTag rasterizer\shaders\hud_camera.vertex_shader rasterizer\shaders\decorator_edit
+NameTag rasterizer\shaders\hud_camera_mask.pixel_shader rasterizer\shaders\smirnov
+NameTag rasterizer\shaders\hud_camera_mask.vertex_shader rasterizer\shaders\smirnov
+NameTag rasterizer\shaders\hud_camera_nightvision.pixel_shader rasterizer\shaders\hdr_retrieve
+NameTag rasterizer\shaders\hud_camera_nightvision.vertex_shader rasterizer\shaders\hdr_retrieve
+NameTag rasterizer\shaders\hud_camera_nightvision_screenshot.pixel_shader rasterizer\shaders\unknown_94
+NameTag rasterizer\shaders\hud_camera_nightvision_screenshot.vertex_shader rasterizer\shaders\unknown_94
+NameTag rasterizer\shaders\hud_camera_pda.pixel_shader rasterizer\shaders\sniper_scope_stencil_pc
+NameTag rasterizer\shaders\hud_camera_pda.vertex_shader rasterizer\shaders\sniper_scope_stencil_pc
+NameTag rasterizer\shaders\screen_space_reflection.pixel_shader rasterizer\shaders\unknown_101
+NameTag rasterizer\shaders\screen_space_reflection.vertex_shader rasterizer\shaders\unknown_101
+NameTag rasterizer\shaders\screen_space_reflection_blur.pixel_shader rasterizer\shaders\unknown_106
+NameTag rasterizer\shaders\screen_space_reflection_blur.vertex_shader rasterizer\shaders\unknown_106
+NameTag rasterizer\shaders\unknown_default_shader_100.pixel_shader rasterizer\shaders\radial_blur
+NameTag rasterizer\shaders\unknown_default_shader_100.vertex_shader rasterizer\shaders\radial_blur
+NameTag rasterizer\shaders\unknown_default_shader_102.pixel_shader rasterizer\shaders\unknown_102
+NameTag rasterizer\shaders\unknown_default_shader_102.vertex_shader rasterizer\shaders\unknown_102
+NameTag rasterizer\shaders\unknown_default_shader_103.pixel_shader rasterizer\shaders\unknown_103
+NameTag rasterizer\shaders\unknown_default_shader_103.vertex_shader rasterizer\shaders\unknown_103
+NameTag rasterizer\shaders\unknown_default_shader_104.pixel_shader rasterizer\shaders\unknown_104
+NameTag rasterizer\shaders\unknown_default_shader_104.vertex_shader rasterizer\shaders\unknown_104
+NameTag rasterizer\shaders\unknown_default_shader_105.pixel_shader rasterizer\shaders\unknown_105
+NameTag rasterizer\shaders\unknown_default_shader_105.vertex_shader rasterizer\shaders\unknown_105
+NameTag rasterizer\shaders\unknown_default_shader_107.pixel_shader rasterizer\shaders\unknown_107
+NameTag rasterizer\shaders\unknown_default_shader_107.vertex_shader rasterizer\shaders\unknown_107
+NameTag rasterizer\shaders\unknown_default_shader_109.pixel_shader rasterizer\shaders\unknown_109
+NameTag rasterizer\shaders\unknown_default_shader_109.vertex_shader rasterizer\shaders\unknown_109
+NameTag rasterizer\shaders\unknown_default_shader_96.pixel_shader rasterizer\shaders\ssao
+NameTag rasterizer\shaders\unknown_default_shader_96.vertex_shader rasterizer\shaders\ssao
+NameTag rasterizer\shaders\unknown_default_shader_97.pixel_shader rasterizer\shaders\ssao_blur
+NameTag rasterizer\shaders\unknown_default_shader_97.vertex_shader rasterizer\shaders\ssao_blur
+NameTag rasterizer\shaders\unknown_default_shader_98.pixel_shader rasterizer\shaders\unknown_98
+NameTag rasterizer\shaders\unknown_default_shader_98.vertex_shader rasterizer\shaders\unknown_98
+NameTag rasterizer\shaders\unknown_default_shader_99.pixel_shader rasterizer\shaders\lightshafts
+NameTag rasterizer\shaders\unknown_default_shader_99.vertex_shader rasterizer\shaders\lightshafts
+NameTag rasterizer\shaders\vision_mode.pixel_shader rasterizer\shaders\hud_camera_nightvision
+NameTag rasterizer\shaders\vision_mode.vertex_shader rasterizer\shaders\hud_camera_nightvision
+SaveTagNames
+
+GenerateShader explicit add
+GenerateShader explicit add_downsampled
+GenerateShader explicit alpha_test_explicit
+GenerateShader explicit apply_color_matrix
+GenerateShader explicit beam_update
+GenerateShader explicit blend3
+GenerateShader explicit bloom_add_alpha1
+GenerateShader explicit bloom_curve
+GenerateShader explicit blur_11_horizontal nofixes
+GenerateShader explicit blur_11_vertical nofixes
+GenerateShader explicit bspline_resample
+GenerateShader explicit chud_overlay_blend
+GenerateShader explicit contrail_spawn
+GenerateShader explicit contrail_update
+GenerateShader explicit copy
+GenerateShader explicit copy_rgbe_to_rgb
+GenerateShader explicit copy_surface
+GenerateShader explicit crop
+GenerateShader explicit cubemap_clamp
+GenerateShader explicit cubemap_divide
+GenerateShader explicit cubemap_phi_blur
+GenerateShader explicit cubemap_theta_blur
+GenerateShader explicit custom_gamma_correct
+GenerateShader explicit debug
+GenerateShader explicit debug2d
+GenerateShader explicit decorator_default
+GenerateShader explicit decorator_edit
+GenerateShader explicit decorator_no_wind
+GenerateShader explicit decorator_shaded
+GenerateShader explicit decorator_static
+GenerateShader explicit decorator_sun
+GenerateShader explicit decorator_wavy
+GenerateShader explicit displacement
+GenerateShader explicit displacement_motion_blur
+GenerateShader explicit double_gradient nofixes
+GenerateShader explicit downsample_2x2
+GenerateShader explicit downsample_4x4_block
+GenerateShader explicit downsample_4x4_block_bloom
+GenerateShader explicit downsample_4x4_block_bloom_ldr
+GenerateShader explicit downsample_4x4_block_bloom_new
+GenerateShader explicit downsample_4x4_bloom_dof
+GenerateShader explicit downsample_4x4_gaussian
+GenerateShader explicit downsample_4x4_gaussian_bloom
+GenerateShader explicit downsample_4x4_gaussian_bloom_ldr
+GenerateShader explicit downsize_2x_target
+GenerateShader explicit downsize_2x_to_bloom
+GenerateShader explicit exposure_downsample
+GenerateShader explicit final_composite
+GenerateShader explicit final_composite_debug
+GenerateShader explicit final_composite_dof
+GenerateShader explicit final_composite_zoom
+GenerateShader explicit fxaa
+GenerateShader explicit gamma_correct
+GenerateShader explicit gradient nofixes
+GenerateShader explicit hdr_retrieve
+##GenerateShader explicit hud_camera_nightvision
+GenerateShader explicit implicit_hill
+GenerateShader explicit kernel_5 nofixes
+GenerateShader explicit legacy_hud_bitmap
+GenerateShader explicit legacy_meter
+GenerateShader explicit lens_flare
+GenerateShader explicit light_volume_update
+GenerateShader explicit lightshafts
+GenerateShader explicit overhead_map_geometry
+GenerateShader explicit particle_spawn
+GenerateShader explicit particle_update
+GenerateShader explicit patchy_fog nofixes
+GenerateShader explicit pixel_copy
+GenerateShader explicit player_emblem_screen
+GenerateShader explicit player_emblem_world
+GenerateShader explicit radial_blur
+GenerateShader explicit restore_ldr_hdr_depth
+GenerateShader explicit rotate_2d
+GenerateShader explicit screenshot_combine nofixes
+GenerateShader explicit screenshot_combine_dof nofixes
+GenerateShader explicit screenshot_display
+GenerateShader explicit screenshot_memexport
+GenerateShader explicit shadow_apply
+GenerateShader explicit shadow_apply_bilinear
+GenerateShader explicit shadow_apply_fancy
+GenerateShader explicit shadow_apply_faster
+GenerateShader explicit shadow_apply_point
+GenerateShader explicit shadow_geometry
+GenerateShader explicit shield_impact
+GenerateShader explicit shield_meter
+GenerateShader explicit sky_dome_simple
+GenerateShader explicit smirnov
+GenerateShader explicit sniper_scope
+GenerateShader explicit sniper_scope_stencil_pc
+GenerateShader explicit spike_blur_horizontal
+GenerateShader explicit spike_blur_vertical
+##GenerateShader explicit ssao
+GenerateShader explicit ssao_blur
+GenerateShader explicit stencil_stipple
+GenerateShader explicit transparent
+##GenerateShader explicit unknown_101
+##GenerateShader explicit unknown_102
+##GenerateShader explicit unknown_103
+##GenerateShader explicit unknown_104
+##GenerateShader explicit unknown_105
+##GenerateShader explicit unknown_106
+GenerateShader explicit unknown_107
+GenerateShader explicit unknown_109
+##GenerateShader explicit unknown_94
+##GenerateShader explicit unknown_98
+GenerateShader explicit update_persistence
+GenerateShader explicit water_ripple
+GenerateShader explicit write_depth
+GenerateShader explicit yuv_to_rgb

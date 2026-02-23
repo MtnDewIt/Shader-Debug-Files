@@ -1,0 +1,217 @@
+EditTag ms30\shaders\halogram.render_method_definition
+SaveTagChanges
+Exit
+EditTag ms30\shaders\particle.render_method_definition
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader.render_method_definition
+SaveTagChanges
+Exit
+EditTag ms30\shaders\particle_options\distortion_diffuse.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\car_paint.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\chameleon.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\chameleon_albedo_masked.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\chameleon_masked.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\color_mask_hard_light.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\detail_plus_detail_masked.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\distortion.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\illum_ml_add_five_change_color.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\illum_ml_add_four_change_color.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\simple_four_change_color.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\two_change_color_anim_overlay.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\two_change_color_chameleon.render_method_option
+SaveTagChanges
+Exit
+EditTag ms30\shaders\shader_options\two_change_color_tex_overlay.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\default_bitmaps\bitmaps\default_car_paint_bump_detail.bitmap
+SaveTagChanges
+Exit
+EditTag shaders\particle_options\distortion_diffuse.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\albedo_two_change_color_anim_overlay.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\car_paint_bump_detail.bitmap
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\distort_on.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\illum_ml_add_five_change_color.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\illum_ml_add_four_change_color.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\illum_palettized_depth_fade.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\material_car_paint.render_method_option
+SaveTagChanges
+Exit
+EditTag shaders\shader_options\sfx_distort.render_method_option
+SaveTagChanges
+Exit
+##EditTag objects\eldewrito\reforge\shaders\glass.render_method_template
+##SaveTagChanges
+##Exit
+##EditTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.pixel_shader
+##SaveTagChanges
+##Exit
+##EditTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.vertex_shader
+##SaveTagChanges
+##Exit
+
+cs
+var shaderGroups = new List<string>()
+{
+    "rmbk",
+    "rmcs",
+    "rmct",
+    "rmd ",
+    "rmfl",
+    "rmfs",
+    "rmfu",
+    "rmgl",
+    "rmhg",
+    "rmmx",
+    "rmsh",
+    "rmss",
+    "rmtr",
+    "rmw ",
+    "rmzo",
+    "beam",
+    "cntl",
+    "decs",
+    "ltvl",
+    "prt3",
+};
+
+using (var stream = Cache.OpenCacheReadWrite())
+{
+    foreach (var group in shaderGroups)
+    {
+        var tags = Cache.TagCache.FindAllInGroup(group);
+
+        foreach (var tag in tags)
+        {
+            var definition = Cache.Deserialize(stream, tag);
+            Cache.Serialize(stream, tag, definition);
+        }
+    }
+}
+:x
+
+NameTag ms30\shaders\particle_options\distortion_diffuse.render_method_option ms30\shaders\particle_options\specialized_rendering_distortion
+NameTag ms30\shaders\shader_options\car_paint.render_method_option ms30\shaders\shader_options\material_car_paint_option
+NameTag ms30\shaders\shader_options\chameleon.render_method_option ms30\shaders\shader_options\albedo_chameleon
+NameTag ms30\shaders\shader_options\chameleon_albedo_masked.render_method_option ms30\shaders\shader_options\albedo_chameleon_albedo_masked
+NameTag ms30\shaders\shader_options\chameleon_masked.render_method_option ms30\shaders\shader_options\albedo_chameleon_masked
+NameTag ms30\shaders\shader_options\color_mask_hard_light.render_method_option ms30\shaders\shader_options\albedo_color_mask_hard_light
+NameTag ms30\shaders\shader_options\detail_plus_detail_masked.render_method_option ms30\shaders\shader_options\bump_detail_plus_detail_masked
+NameTag ms30\shaders\shader_options\distortion.render_method_option ms30\shaders\shader_options\sfx_distort
+NameTag ms30\shaders\shader_options\illum_ml_add_five_change_color.render_method_option ms30\shaders\shader_options\illum_multilayer_add_five_change_color
+NameTag ms30\shaders\shader_options\illum_ml_add_four_change_color.render_method_option ms30\shaders\shader_options\illum_multilayer_add_four_change_color
+NameTag ms30\shaders\shader_options\simple_four_change_color.render_method_option ms30\shaders\shader_options\illum_simple_four_change_color
+NameTag ms30\shaders\shader_options\two_change_color_anim_overlay.render_method_option ms30\shaders\shader_options\albedo_two_change_color_anim
+NameTag ms30\shaders\shader_options\two_change_color_chameleon.render_method_option ms30\shaders\shader_options\albedo_two_change_color_chameleon
+NameTag ms30\shaders\shader_options\two_change_color_tex_overlay.render_method_option ms30\shaders\shader_options\albedo_two_change_color_tex_overlay
+NameTag shaders\default_bitmaps\bitmaps\default_car_paint_bump_detail.bitmap shaders\default_bitmaps\bitmaps\sparklenoisemap
+NameTag shaders\particle_options\distortion_diffuse.render_method_option shaders\particle_options\specialized_rendering_distortion
+NameTag shaders\shader_options\albedo_two_change_color_anim_overlay.render_method_option shaders\shader_options\albedo_two_change_color_anim
+NameTag shaders\shader_options\car_paint_bump_detail.bitmap ms30\shaders\default_bitmaps\bitmaps\sparklenoisemap
+NameTag shaders\shader_options\distort_on.render_method_option shaders\shader_options\sfx_distort
+NameTag shaders\shader_options\illum_ml_add_five_change_color.render_method_option shaders\shader_options\illum_multilayer_five_change_color
+NameTag shaders\shader_options\illum_ml_add_four_change_color.render_method_option shaders\shader_options\illum_multilayer_four_change_color
+NameTag shaders\shader_options\illum_palettized_depth_fade.render_method_option shaders\screen_options\illum_palettized_depth_fade
+NameTag shaders\shader_options\material_car_paint.render_method_option shaders\shader_options\material_car_paint_option
+NameTag shaders\shader_options\sfx_distort.render_method_option shaders\shader_options\distort_on
+##NameTag objects\eldewrito\reforge\shaders\glass.render_method_template shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
+##NameTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.pixel_shader shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
+##NameTag ms30\shaders\halogram_templates\_0_1_1_0_0_0_0_0_0.vertex_shader shaders\halogram_templates\_0_1_1_0_0_0_0_0_0
+SaveTagNames
+
+OpenCacheFile reachmaps\m45.map
+PortTag rasterizer\rain\rain_noise_boundary.bitmap
+PortTag shaders\default_bitmaps\bitmaps\color_white_alpha_black.bitmap
+Exit
+
+// Maybe move to using loose tags 
+GenerateBitmap shaders\default_bitmaps\bitmaps\checker_board "workingdir\bitmaps\checker_board.dds"
+GenerateBitmap shaders\default_bitmaps\bitmaps\color_blue "workingdir\bitmaps\color_blue.dds"
+
+// This is an array type bitmap which currently has issues when trying to import
+DuplicateTag rasterizer\water\wave_test1\wave_test1_slope_water.bitmap rasterizer\water\static_wave\static_wave_slope_water
+
+EditTag globals\rasterizer_globals.rasterizer_globals
+AddBlockElements defaultbitmaps
+SetField defaultbitmaps[*].bitmap rasterizer\diffuse_power_specular\diffuse_power.bitmap
+SaveTagChanges
+Exit
+
+GenerateRmdf Beam
+GenerateRmdf Black
+GenerateRmdf Contrail
+GenerateRmdf Cortana
+GenerateRmdf Custom
+GenerateRmdf Decal
+GenerateRmdf Foliage NoFixes
+GenerateRmdf Fur
+GenerateRmdf FurStencil
+GenerateRmdf Glass
+GenerateRmdf Halogram
+GenerateRmdf LightVolume
+GenerateRmdf Mux
+GenerateRmdf Particle
+GenerateRmdf Screen
+GenerateRmdf Shader
+GenerateRmdf Terrain
+GenerateRmdf Water
+GenerateRmdf ZOnly
+
+RecompileShaders beam
+RecompileShaders black
+RecompileShaders contrail
+RecompileShaders cortana
+RecompileShaders custom
+RecompileShaders decal
+RecompileShaders foliage
+RecompileShaders fur
+RecompileShaders fur_stencil
+RecompileShaders glass
+RecompileShaders halogram
+RecompileShaders light_volume
+RecompileShaders mux
+RecompileShaders particle
+RecompileShaders screen
+RecompileShaders shader
+RecompileShaders terrain
+RecompileShaders water
+RecompileShaders zonly
